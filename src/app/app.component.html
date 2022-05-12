@@ -1,6 +1,6 @@
 <nav>
   <div
-    class="navbar md:container md:mx-auto flex justify-between text-yellow-pantone text-xl font-medium"
+    class="navbar md:container md:mx-auto flex justify-between text-yellow-pantone text-xl"
   >
     <div class="flex m-5 items-center">
       <img
@@ -10,8 +10,10 @@
         height="40px"
         class="rounded-full"
       />
-      <h4 class="mx-5">Juicy N' Yummy</h4>
-      <div class="flex items-center text-black opacity-50 bg-white h-full rounded-full">
+      <a routerLink="/" class="mx-5">Juicy N' Yummy</a>
+      <div
+        class="flex items-center text-black bg-white/[.5] h-full rounded-full"
+      >
         <label for="search_bar">
           <img
             src="../assets/images/search.svg"
@@ -20,17 +22,18 @@
             class="mx-3"
         /></label>
         <input
-          class="outline-none w-80 bg-transparent"
+          class="outline-none w-80 bg-transparent text-flicker-pink placeholder:text-taupe-gray"
           id="search_bar"
           type="text"
+          placeholder="www.juicynyummy.com"
         />
       </div>
     </div>
     <div class="flex m-5 items-center">
-      <h4 class="mx-6">Add Restaurant</h4>
-      <h4 class="mx-6">Log in</h4>
-      <h4 class="mx-6">Sign up</h4>
+      <a routerLink="/" class="mx-6">Add Restaurant</a>
+      <a routerLink="/" class="mx-6">Log in</a>
+      <a routerLink="/" class="mx-6">Sign up</a>
     </div>
   </div>
 </nav>
-
+<app-home></app-home>
