@@ -1,4 +1,5 @@
-const { Schema, default: mongoose } = require("mongoose");
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
 const Items = new Schema({
   name: {
@@ -13,8 +14,12 @@ const Items = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Admin",
   },
-  password: {
-    type: String,
+  price: {
+    type: number,
+    required: true,
+  },
+  time: {
+    type: number,
     required: true,
   },
 });
