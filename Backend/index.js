@@ -14,9 +14,13 @@ app.use(express.json())
 //   res.send("hello world");
 // });
 
-//create user using /auth using post
-// app.use("/auth", require("./routes/auth"));
-// app.use("/data", require("./routes/data"));
+// Users Routes
+app.use("/auth", require("./routes/users/auth"));
+app.use("/data", require("./routes/users/data"));
+
+// Admin Routes
+app.use("/admin/auth", require("./routes/admin/auth"));
+app.use("/admin/data", require("./routes/admin/data"));
 
 
 app.listen(port, () => {
