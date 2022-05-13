@@ -10,10 +10,11 @@ import { NavbarComponent } from './user/navbar/navbar.component';
 import { AdminsignupComponent } from './admin/adminsignup/adminsignup.component';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { AdminnavbarComponent } from './admin/adminnavbar/adminnavbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LoginComponent, SignupComponent, NavbarComponent, AdminsignupComponent, AdminloginComponent, AdminnavbarComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
