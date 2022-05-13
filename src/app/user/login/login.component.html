@@ -1,1 +1,32 @@
-<p>login works!</p>
+<div class="login grid justify-items-end">
+  <div class="flex justify-center items-center h-screen w-2/5">
+    <div class="bg-white w-4/5 h-4/5 flex flex-col px-20 rounded-3xl">
+      <div class="mt-20">
+        <p class="text-4xl font-medium">Log in</p>
+        <p>
+          or
+          <a routerLink="/signup" class="text-flicker-pink font-medium"
+            >Sign up</a
+          >
+        </p>
+      </div>
+      <form action="" class="flex flex-col">
+        <mat-form-field appearance="outline">
+          <mat-label>Phone No.</mat-label>
+          <input class="p-2" matInput placeholder="Phone No." />
+        </mat-form-field>
+        <a
+          routerLink=""
+          class="bg-flicker-pink rounded-lg text-white text-center mx-36"
+        >
+          <button class="m-2 text-base">Continue</button>
+        </a>
+      </form>
+      <p class="text-xs text-center px-10 pt-5">
+        By clicking on continue,<span class="font-bold">
+          I accept the Terms & Conditions & Privacy Policy
+        </span>
+      </p>
+    </div>
+  </div>
+</div>
