@@ -2,7 +2,11 @@
   <div
     [ngClass]="{
       absolute: router.url === '/',
-      hidden: router.url === '/auth/login' || router.url === '/auth/signup'
+      hidden:
+        router.url === '/auth/login' ||
+        router.url === '/auth/signup' ||
+        router.url === '/admin/login' ||
+        router.url === '/admin/signup'
     }"
     class="inset-x-0 md:container md:mx-auto flex justify-between text-yellow-pantone text-xl"
   >
@@ -34,7 +38,7 @@
       </div>
     </div>
     <div class="flex m-5 items-center">
-      <a routerLink="/adminlogin" class="mx-6">Add Restaurant</a>
+      <a routerLink="/admin/login" class="mx-6">Add Restaurant</a>
       <a routerLink="/auth/login" class="mx-6">Log in</a>
       <a routerLink="/auth//signup" class="mx-6">Sign up</a>
     </div>

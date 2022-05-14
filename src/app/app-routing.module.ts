@@ -25,12 +25,17 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'adminlogin',
-    component: AdminloginComponent,
-  },
-  {
-    path: 'adminsignup',
-    component: AdminsignupComponent,
+    path: 'admin',
+    children: [
+      {
+        path: 'signup',
+        component: AdminsignupComponent,
+      },
+      {
+        path: 'login',
+        component: AdminloginComponent,
+      },
+    ],
   },
 ];
 
