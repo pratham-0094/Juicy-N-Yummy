@@ -52,27 +52,16 @@ router.post("/signup", async (req, res) => {
 // Route 2 :- Authenticate a user
 router.post("/login", async (req, res) => {
   let success = false;
-  const { email, password } = req.body;
+  const { phone_no } = req.body;
 
   try {
     //Check the credential
-    let users = await Users.findOne({ email });
+    let users = await Users.findOne({ phone_no });
     if (!users) {
       success = false;
       return res
         .status(400)
         .json({ error: "Please try to login with correct credentials" });
-    }
-
-    const passwordCompare = await bcrypt.compare(password, users.password);
-    if (!passwordCompare) {
-      success = false;
-      return res
-        .status(400)
-        .json({
-          success,
-          error: "Please try to login with correct credentials",
-        });
     }
 
     const data = {
@@ -91,15 +80,15 @@ router.post("/login", async (req, res) => {
 });
 
 // Route 3 :- Get user details
-router.post('/getuser', usersInfo, async (req, res) => {
-    try {
-        let userId = req.users.id;
-        const users = await Users.findById(userId).select("-password")
-        res.send(users)
-    } catch (error) {
-        console.error(error.message);
-        res.status(500).send("Internal Server Error");
-    }
-})
+router.post("/getuser", usersInfo, async (req, res) => {
+  try {
+    let userId = req.users.id;
+    const users = await Users.findById(userId).select("-password");
+    res.send(users);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 module.exports = router;
