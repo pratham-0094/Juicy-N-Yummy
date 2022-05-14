@@ -7,4 +7,24 @@
   margin: 0;
   padding: 0;
   font-family: "Farro", sans-serif;
+  box-sizing: border-box;
+}
+
+body::-webkit-scrollbar {
+  width: 0.8em;
+}
+
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: #F72585;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

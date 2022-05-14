@@ -7,7 +7,6 @@ import { NavbarComponent } from './user/navbar/navbar.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
 
-
 const routes: Routes = [
   {
     path: '',
