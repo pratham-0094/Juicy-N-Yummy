@@ -1,14 +1,13 @@
-const connectToMongo = require('./db');
-const express = require('express')
-var cors = require('cors') 
+const connectToMongo = require("./db");
+const express = require("express");
+const cors = require("cors");
 
 connectToMongo();
-const app = express()
-const port = 5000
+const app = express();
+const port = 5000;
 
-app.use(cors())
-app.use(express.json())
-
+app.use(cors());
+app.use(express.json());
 
 // app.get("/", (req, res) => {
 //   res.send("hello world");
@@ -16,12 +15,12 @@ app.use(express.json())
 
 // Users Routes
 app.use("/auth", require("./routes/users/auth"));
-app.use("/data", require("./routes/users/data"));
+// app.use("/data", require("./routes/users/data"));
 
 // Admin Routes
-app.use("/admin/auth", require("./routes/admin/auth"));
-app.use("/admin/data", require("./routes/admin/data"));
-
+app.use("/admin/file", require("./routes/admin/image"));
+// app.use("/admin/auth", require("./routes/admin/auth"));
+// app.use("/admin/data", require("./routes/admin/data"));
 
 app.listen(port, () => {
   console.log(`LISTENING ON PORT http://localhost:${port}`);

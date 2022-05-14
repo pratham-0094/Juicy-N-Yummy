@@ -6,11 +6,26 @@ const Items = new Schema({
     type: String,
     required: true,
   },
-  rating: {
-    type: number,
+  category: {
+    type: String,
     required: true,
   },
+  origin: {
+    type: String,
+    required: true,
+  },
+  rating: {
+    type: String,
+    required: true,
+  },
+  img: {
+    type: string,
+  },
   restaurant: {
+    type: String,
+    required: true,
+  },
+  restaurantId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Admin",
   },
