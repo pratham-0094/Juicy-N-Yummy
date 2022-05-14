@@ -13,8 +13,7 @@ const mongoClient = new MongoClient(url);
 // Route 1 :- Upload image
 router.post("/upload", async (req, res) => {
   try {
-    let uri = await upload(req, res);
-    res.send(uri);
+    await upload(req, res);
     console.log(req.file);
 
     if (req.file == undefined) {
@@ -25,6 +24,7 @@ router.post("/upload", async (req, res) => {
 
     return res.send({
       message: "File has been uploaded.",
+      name: req.file.filename,
     });
   } catch (error) {
     console.log(error);
@@ -100,7 +100,7 @@ router.delete("/get/delete/:id", async (req, res) => {
     const bucket = new GridFSBucket(database, {
       bucketName: "fs",
     });
-    bucket.delete(id);
+    bucket.DeleteAsync(id);
     res.send("success");
   } catch (error) {
     res.send(error);
