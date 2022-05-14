@@ -1,6 +1,7 @@
 const util = require("util");
 const multer = require("multer");
 const { GridFsStorage } = require("multer-gridfs-storage");
+const { rmSync } = require("fs");
 
 const storage = new GridFsStorage({
   url: "mongodb+srv://root:adminroot@cluster.djali.mongodb.net/Juicy-N-Yummy",

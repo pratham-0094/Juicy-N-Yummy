@@ -14,6 +14,7 @@ app.use(express.json());
 // });
 
 // Users Routes
+app.use("/file", require("./routes/users/image"));
 app.use("/auth", require("./routes/users/auth"));
 // app.use("/data", require("./routes/users/data"));
 

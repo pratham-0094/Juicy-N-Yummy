@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const Duration = new Schema({ time: number });
+const category = new Schema({ name: string });
 const Admin = new Schema({
   name: {
     type: String,
@@ -41,6 +42,9 @@ const Admin = new Schema({
   duration: {
     type: [Duration],
   },
+  category:{
+    type:[category]
+  }
 });
 
 const admin = mongoose.model("Admin", Admin);
