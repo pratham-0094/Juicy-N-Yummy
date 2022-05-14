@@ -1,7 +1,8 @@
 const express = require("express");
-const router = express.Router();
 const bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
+const router = express.Router();
+
 const Admin = require("../../models/admin");
 var adminsInfo = require("../../middleware/admin-info");
 
@@ -108,18 +109,40 @@ router.post("/getadmin", adminsInfo, async (req, res) => {
 // Route 4 :- Edit user details
 router.put("/edit", adminsInfo, async (req, res) => {
   let success = false;
-  let { name, email, phone_no, password } = req.body;
-  const user = {
-    name: name,
-    email: email,
-    phone_no: phone_no,
-    password: password,
+  let { name, email, phone_no, duration } = req.body;
+  const admin = {
+    name,
+    email,
+    phone_no,
+    duration,
   };
   try {
-    let userId = req.users.id;
-    const users = await Users.findByIdAndUpdate(
-      userId,
-      { $set: user },
+    let adminId = req.admin.id;
+    const admins = await Admin.findByIdAndUpdate(
+      adminId,
+      { $set: admin },
+      { new: true }
+    );
+    success = true;
+    res.json({ success });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Route 5 :- Add category
+router.put("/category", adminsInfo, async (req, res) => {
+  let success = false;
+  let { category } = req.body;
+  const admin = {
+    category,
+  };
+  try {
+    let adminId = req.admin.id;
+    const admins = await Admin.findByIdAndUpdate(
+      adminId,
+      { $set: admin },
       { new: true }
     );
     success = true;
