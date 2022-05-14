@@ -1,6 +1,4 @@
 const express = require("express");
-const mongoose = require("mongoose");
-// const Grid = require("gridfs-stream");
 const router = express.Router();
 
 const upload = require("../../middleware/image-info");

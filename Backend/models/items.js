@@ -19,7 +19,7 @@ const Items = new Schema({
     required: true,
   },
   img: {
-    type: string,
+    type: String,
   },
   restaurant: {
     type: String,
@@ -30,11 +30,11 @@ const Items = new Schema({
     ref: "Admin",
   },
   price: {
-    type: number,
+    type: Number,
     required: true,
   },
   time: {
-    type: number,
+    type: Number,
     required: true,
   },
 });
