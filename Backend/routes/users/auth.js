@@ -14,7 +14,7 @@ router.post("/signup", async (req, res) => {
 
   try {
     // Check whether the user with this email exists already
-    let users = await Users.findOne({ email: email });
+    let users = await Users.findOne({ phone_no: phone_no });
     if (users) {
       let success = false;
       return res
@@ -38,7 +38,6 @@ router.post("/signup", async (req, res) => {
         id: users.id,
       },
     };
-
     const authtoken = jwt.sign(data, JWT_SECRET);
     let success = true;
     // res.json(user)
@@ -85,6 +84,31 @@ router.post("/getuser", usersInfo, async (req, res) => {
     let userId = req.users.id;
     const users = await Users.findById(userId).select("-password");
     res.send(users);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Route 4 :- Edit user details
+router.put("/edit", usersInfo, async (req, res) => {
+  let success = false;
+  let { name, email, phone_no, password } = req.body;
+  const user = {
+    name: name,
+    email: email,
+    phone_no: phone_no,
+    password: password,
+  };
+  try {
+    let userId = req.users.id;
+    const users = await Users.findByIdAndUpdate(
+      userId,
+      { $set: user },
+      { new: true }
+    );
+    success = true;
+    res.json({ success });
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");

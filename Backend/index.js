@@ -20,7 +20,7 @@ app.use("/auth", require("./routes/users/auth"));
 
 // Admin Routes
 app.use("/admin/file", require("./routes/admin/image"));
-// app.use("/admin/auth", require("./routes/admin/auth"));
+app.use("/admin/auth", require("./routes/admin/auth"));
 // app.use("/admin/data", require("./routes/admin/data"));
 
 app.listen(port, () => {
