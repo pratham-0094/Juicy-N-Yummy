@@ -1,1 +1,83 @@
-<p>adminsignup works!</p>
+<div class="adminsignup grid justify-items-end">
+  <div class="flex justify-center items-center h-screen w-2/5">
+    <div class="bg-white w-4/5 h-4/5 flex flex-col px-20 rounded-3xl">
+      <div class="mt-20">
+        <p class="text-4xl font-medium">Sign up</p>
+        <p>
+          or
+          <a routerLink="/admin/login" class="text-flicker-pink font-medium"
+            >Log in</a
+          >
+        </p>
+      </div>
+      <mat-tab-group>
+        <mat-tab label="Personal">
+          <form action="" class="flex flex-col mt-10">
+            <mat-form-field appearance="outline">
+              <mat-label>Phone No.</mat-label>
+              <input class="p-2" matInput placeholder="Phone No." />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input class="p-2" matInput placeholder="Name" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input class="p-2" matInput placeholder="Email" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input
+                type="password"
+                class="p-2"
+                matInput
+                placeholder="Password"
+              />
+            </mat-form-field>
+            <a
+              routerLink=""
+              class="bg-flicker-pink rounded-lg text-white text-center mx-36"
+            >
+            </a></form
+        ></mat-tab>
+        <mat-tab label="Details">
+          <form action="" class="flex flex-col mt-10">
+            <mat-form-field appearance="outline">
+              <mat-label>Restaurant</mat-label>
+              <input class="p-2" matInput placeholder="Restaurant Name" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Address</mat-label>
+              <input class="p-2" matInput placeholder="Address" />
+            </mat-form-field>
+            <div class="flex items-center justify-center">
+              <mat-form-field appearance="outline" class="mr-6">
+                <mat-label>Distict</mat-label>
+                <input class="p-2" matInput placeholder="Distict" />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="ml-6">
+                <mat-label>State</mat-label>
+                <input class="p-2" matInput placeholder="State" />
+              </mat-form-field>
+            </div>
+            <mat-form-field appearance="outline">
+              <mat-label>Landmark</mat-label>
+              <input class="p-2" matInput placeholder="Landmark" />
+            </mat-form-field>
+            <a
+              routerLink=""
+              class="bg-flicker-pink rounded-lg text-white text-center mx-36"
+            >
+              <button class="m-2 text-base">Continue</button>
+            </a>
+          </form>
+          <p class="text-xs text-center px-10 pt-5">
+            By clicking on continue,<span class="font-bold">
+              I accept the Terms & Conditions & Privacy Policy
+            </span>
+          </p></mat-tab
+        >
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
