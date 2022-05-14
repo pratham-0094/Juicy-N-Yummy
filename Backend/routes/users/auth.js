@@ -1,7 +1,8 @@
 const express = require("express");
-const router = express.Router();
 const bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
+const router = express.Router();
+
 const Users = require("../../models/users");
 var usersInfo = require("../../middleware/users-info");
 
@@ -93,12 +94,11 @@ router.post("/getuser", usersInfo, async (req, res) => {
 // Route 4 :- Edit user details
 router.put("/edit", usersInfo, async (req, res) => {
   let success = false;
-  let { name, email, phone_no, password } = req.body;
+  let { name, email, phone_no } = req.body;
   const user = {
-    name: name,
-    email: email,
-    phone_no: phone_no,
-    password: password,
+    name,
+    email,
+    phone_no,
   };
   try {
     let userId = req.users.id;

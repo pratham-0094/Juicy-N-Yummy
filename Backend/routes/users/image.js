@@ -1,9 +1,6 @@
 const express = require("express");
-const mongoose = require("mongoose");
-// const Grid = require("gridfs-stream");
 const router = express.Router();
 
-const upload = require("../../middleware/image-info");
 const MongoClient = require("mongodb").MongoClient;
 const GridFSBucket = require("mongodb").GridFSBucket;
 const url = "mongodb+srv://root:adminroot@cluster.djali.mongodb.net/";
