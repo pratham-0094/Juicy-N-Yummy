@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const Duration = new Schema({ time: number });
-const category = new Schema({ name: string });
 const Admin = new Schema({
   name: {
     type: String,
@@ -37,14 +35,18 @@ const Admin = new Schema({
   },
   landmark: {
     type: String,
-    required: true,
+  },
+  status: {
+    type: Boolean,
+    default: false,
   },
   duration: {
-    type: [Duration],
+    type: Array,
+    default: [9, 21],
   },
-  category:{
-    type:[category]
-  }
+  category: {
+    type: Array,
+  },
 });
 
 const admin = mongoose.model("Admin", Admin);
