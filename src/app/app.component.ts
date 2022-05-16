@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { EditprofileComponent } from './dialog/editprofile/editprofile.component';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +10,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'Juicy-N-Yummy';
-  constructor(public router: Router) {}
+  constructor(public router: Router, public dialog: MatDialog) {}
+
+  openDialog() {
+    this.dialog.open(EditprofileComponent);
+  }
 }
