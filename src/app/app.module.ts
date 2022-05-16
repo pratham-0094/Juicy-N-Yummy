@@ -14,6 +14,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RestaurantComponent } from './user/restaurant/restaurant.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { EditprofileComponent } from './dialog/editprofile/editprofile.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,8 @@ import { RestaurantComponent } from './user/restaurant/restaurant.component';
     AdminsignupComponent,
     AdminloginComponent,
     RestaurantComponent,
+    DashboardComponent,
+    EditprofileComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +39,7 @@ import { RestaurantComponent } from './user/restaurant/restaurant.component';
     MatProgressSpinnerModule,
     MatStepperModule,
     MatTabsModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

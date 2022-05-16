@@ -38,10 +38,25 @@
       </div>
     </div>
     <div class="flex m-5 items-center">
+      <button class="mx-6">Log out</button>
+      <button
+        mat-button
+        (click)="openDialog()"
+        class="bg-yellow-pantone text-flicker-pink rounded-lg flex p-2 mx-6"
+      >
+        <img
+          class="rounded-full w-7 h-7 mr-3"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaUTp3j_LpF5r5_gNdvW0g7p057ExdcHWbUQ&usqp=CAU"
+          alt=""
+        />
+        Profile
+      </button>
+    </div>
+    <!-- <div class="flex m-5 items-center">
       <a routerLink="/admin/login" class="mx-6">Add Restaurant</a>
       <a routerLink="/auth/login" class="mx-6">Log in</a>
       <a routerLink="/auth//signup" class="mx-6">Sign up</a>
-    </div>
+    </div> -->
   </div>
 </nav>
 <router-outlet></router-outlet>
