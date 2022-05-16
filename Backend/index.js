@@ -16,12 +16,12 @@ app.use(express.json());
 // Users Routes
 app.use("/file", require("./routes/users/image"));
 app.use("/auth", require("./routes/users/auth"));
-// app.use("/data", require("./routes/users/data"));
+app.use("/restaurant", require("./routes/users/data"));
 
 // Admin Routes
 app.use("/admin/file", require("./routes/admin/image"));
 app.use("/admin/auth", require("./routes/admin/auth"));
-// app.use("/admin/data", require("./routes/admin/data"));
+app.use("/admin/restaurant", require("./routes/admin/data"));
 
 app.listen(port, () => {
   console.log(`LISTENING ON PORT http://localhost:${port}`);

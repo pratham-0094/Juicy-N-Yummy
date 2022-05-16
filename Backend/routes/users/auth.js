@@ -80,7 +80,7 @@ router.post("/login", async (req, res) => {
 });
 
 // Route 3 :- Get user details
-router.post("/getuser", usersInfo, async (req, res) => {
+router.get("/getuser", usersInfo, async (req, res) => {
   try {
     let userId = req.users.id;
     const users = await Users.findById(userId).select("-password");
