@@ -4,6 +4,7 @@ import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { AdminsignupComponent } from './admin/adminsignup/adminsignup.component';
 import { HomeComponent } from './user/home/home.component';
 import { LoginComponent } from './user/login/login.component';
+import { RestaurantComponent } from './user/restaurant/restaurant.component';
 import { SignupComponent } from './user/signup/signup.component';
 
 const routes: Routes = [
@@ -36,6 +37,10 @@ const routes: Routes = [
         component: AdminloginComponent,
       },
     ],
+  },
+  {
+    path: 'restaurant',
+    component: RestaurantComponent,
   },
 ];
 
