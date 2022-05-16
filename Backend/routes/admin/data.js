@@ -5,13 +5,14 @@ const router = express.Router();
 const Items = require("../../models/items");
 var adminsInfo = require("../../middleware/admin-info");
 
+// Route 1 :- Create item
 router.post("/add", adminsInfo, async (req, res) => {
   const { name, category, origin, rating, img, restaurant, price, time } =
     req.body;
   let adminId = req.admin.id;
 
   try {
-    const items = new Items.create({
+    const items = await Items.create({
       name,
       category,
       origin,
@@ -29,3 +30,40 @@ router.post("/add", adminsInfo, async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
+// Route 2 :- Delete item
+router.delete("/delete/:id", adminsInfo, async (req, res) => {
+  let adminId = req.admin.id;
+
+  try {
+    let items = await Items.findById(req.params.id);
+
+    if (!items) {
+      return res.status(404).send("Not Found");
+    }
+
+    if (items.restaurantId.toString() !== adminId) {
+      return res.status(401).send("Not Allowed");
+    }
+
+    items = await Items.findByIdAndDelete(req.params.id);
+    res.json({ Success: "Note has been deleted" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Route 3 :- Get item
+router.get("/get", adminsInfo, async (req, res) => {
+  let adminId = req.admin.id;
+  try {
+    let items = await Items.find({ restaurantId: adminId });
+    res.json(items);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+module.exports = router;
