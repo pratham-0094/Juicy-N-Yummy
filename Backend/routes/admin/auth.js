@@ -95,7 +95,7 @@ router.post("/login", async (req, res) => {
 });
 
 // Route 3 :- Get user details
-router.post("/getadmin", adminsInfo, async (req, res) => {
+router.get("/getadmin", adminsInfo, async (req, res) => {
   try {
     let adminId = req.admin.id;
     const admin = await Admin.findById(adminId).select("-password");
