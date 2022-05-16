@@ -1,0 +1,35 @@
+<div class="md:container md:m-auto">
+  <div class="m-10 mx-40">
+    <h1 class="text-taupe-gray">Regional Food</h1>
+    <div class="flex flex justify-evenly">
+      <div
+        *ngFor="let i of origin"
+        class="flex flex-col justify-center items-center"
+      >
+        <img
+          class="m-4 border-2 border-black h-40 w-40 rounded-full cursor-pointer"
+          src="{{ i.image }}"
+          alt="{{ i.origin }}"
+          (click)="select_origin(i.origin)"
+        />
+        <p class="text-xl text-flicker-pink font-medium">{{ i.origin }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="m-10 mx-40">
+    <h1 class="text-taupe-gray">Suggestions for you</h1>
+    <div class="flex flex justify-evenly">
+      <div
+        *ngFor="let i of category"
+        class="flex flex-col justify-center items-center"
+      >
+        <img
+          class="m-4 border-2 border-black h-40 w-40 rounded-full cursor-pointer"
+          src="{{ i.image }}"
+          alt="{{ i.origin }}"
+          (click)="select_origin(i.origin)"
+        />
+      </div>
+    </div>
+  </div>
+</div>

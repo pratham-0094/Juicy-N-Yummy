@@ -11,8 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTabsModule } from '@angular/material/tabs';
+import { RestaurantComponent } from './user/restaurant/restaurant.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     SignupComponent,
     AdminsignupComponent,
     AdminloginComponent,
+    RestaurantComponent,
   ],
   imports: [
     BrowserModule,
