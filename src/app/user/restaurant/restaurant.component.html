@@ -24,11 +24,70 @@
         class="flex flex-col justify-center items-center"
       >
         <img
-          class="m-4 border-2 border-black h-40 w-40 rounded-full cursor-pointer"
+          class="m-4 border-2 border-black h-36 w-36 rounded-full cursor-pointer"
           src="{{ i.image }}"
           alt="{{ i.origin }}"
           (click)="select_origin(i.origin)"
         />
+      </div>
+    </div>
+  </div>
+  <div class="m-10 mx-40">
+    <h1 class="text-taupe-gray">Restaurants near you</h1>
+    <div class="grid grid-cols-3 gap-10 p-10">
+      <div *ngFor="let i of items" class="flex h-52 border-2 border-black">
+        <div class="flex relative">
+          <img
+            class="cursor-pointer mr-10"
+            src="{{ i.image }}"
+            alt="{{ i.restaurant }}"
+          />
+          <div class="gradient_black absolute h-full w-full"></div>
+        </div>
+        <div
+          class="flex flex-col justify-between bg-black text-white h-full text-right p-3"
+        >
+          <div class="relative h-16">
+            <p class="text-3xl leading-5">
+              {{ i.restaurant }} <br />
+              <span class="text-xs text-taupe-gray">Pizza , Fast food</span>
+            </p>
+            <svg
+              class="absolute bottom-0 right-0"
+              width="15"
+              height="15"
+              viewBox="0 0 12 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.6121 4.22554L8.01478 3.67806L6.40666 0.264102C6.36274 0.170629 6.29048 0.0949614 6.20122 0.0489671C5.97736 -0.0667604 5.70532 0.0296792 5.59339 0.264102L3.98528 3.67806L0.38791 4.22554C0.288731 4.24038 0.198053 4.28934 0.128627 4.36352C0.0446959 4.45386 -0.00155415 4.5754 3.98784e-05 4.70142C0.0016339 4.82745 0.0509416 4.94766 0.137128 5.03563L2.73987 7.69291L2.12496 11.4452C2.11054 11.5324 2.11976 11.6222 2.15159 11.7043C2.18341 11.7864 2.23655 11.8575 2.305 11.9095C2.37344 11.9616 2.45444 11.9925 2.53882 11.9988C2.6232 12.0051 2.70757 11.9865 2.78238 11.9452L6.00003 10.1736L9.21768 11.9452C9.30553 11.9941 9.40754 12.0104 9.5053 11.9926C9.75183 11.9481 9.9176 11.7033 9.8751 11.4452L9.26019 7.69291L11.8629 5.03563C11.9338 4.96293 11.9805 4.86798 11.9947 4.76412C12.033 4.50447 11.8601 4.26412 11.6121 4.22554Z"
+                fill="#F8DD12"
+              />
+            </svg>
+          </div>
+          <div class="text-base">
+            <span class="m-2 text-flicker-pink text-2xl">&#36; {{ i.price }}</span>
+            <div
+              class="ml-5 bg-taupe-gray rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="m-1 mr-0"
+                width="25"
+                height="25"
+                viewBox="0 0 13 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.22494 16C4.99376 16 3.79023 15.6049 2.76655 14.8646C1.74286 14.1244 0.944998 13.0722 0.473848 11.8412C0.00269714 10.6102 -0.120577 9.25568 0.119613 7.94887C0.359804 6.64205 0.952671 5.44166 1.82324 4.49949C2.69382 3.55733 3.80299 2.91571 5.01051 2.65576C6.21803 2.39582 7.46966 2.52923 8.60712 3.03913C9.74457 3.54902 10.7168 4.4125 11.4008 5.52037C12.0848 6.62824 12.4499 7.93074 12.4499 9.26316C12.4478 11.0492 11.7913 12.7614 10.6244 14.0244C9.4574 15.2873 7.87526 15.9978 6.22494 16ZM6.22494 4.21053C5.30156 4.21053 4.39891 4.50686 3.63115 5.06205C2.86338 5.61724 2.26498 6.40635 1.91162 7.3296C1.55826 8.25285 1.4658 9.26876 1.64594 10.2489C1.82609 11.229 2.27074 12.1293 2.92367 12.8359C3.5766 13.5425 4.40848 14.0237 5.31412 14.2187C6.21976 14.4137 7.15848 14.3136 8.01157 13.9312C8.86467 13.5488 9.59382 12.9012 10.1068 12.0702C10.6198 11.2393 10.8936 10.2625 10.8936 9.26316C10.8922 7.9236 10.3999 6.63934 9.52461 5.69213C8.64938 4.74492 7.46271 4.21209 6.22494 4.21053ZM7.00305 10.1053H5.44682V5.89474H7.00305V10.1053ZM11.8997 4.80589L10.3435 3.12168L11.4438 1.93095L13 3.61516L11.8997 4.80589ZM8.55929 1.68421H3.89059V0H8.55929V1.68421Z"
+                  fill="white"
+                />
+              </svg>
+              <span class="m-1">{{ i.time }} min</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
