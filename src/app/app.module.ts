@@ -17,6 +17,7 @@ import { RestaurantComponent } from './user/restaurant/restaurant.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditprofileComponent } from './dialog/editprofile/editprofile.component';
+import { CartComponent } from './dialog/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { EditprofileComponent } from './dialog/editprofile/editprofile.component
     RestaurantComponent,
     DashboardComponent,
     EditprofileComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
