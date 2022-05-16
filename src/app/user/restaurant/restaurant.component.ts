@@ -38,28 +38,71 @@ export class RestaurantComponent implements OnInit {
     {
       origin: 'Dessert',
       image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJA5Shz4dzZUnzbhe02HaeL2IR7tdV7KKO5Q&usqp=CAU',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIUnXgG2p_DWKadqj-WPpXOIFxoqalvaBCjg&usqp=CAU',
     },
     {
       origin: 'Soup',
       image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjgEt4_PIfpEK4D9GxGFiGbsyNlE5xaUseAyC31cwp9Augu_4kSGKF1CDL_I76QyLTrJM&usqp=CAU',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo8N28JNH2S-On3K-DY9T_ypbHYishTEjAXQ&usqp=CAU',
     },
     {
       origin: 'Beverage',
       image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0rVOoROXkuPOZxWBMvxdwblbRD5p4LcNqBw&usqp=CAU',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSatd2YVK9veG8NDmDJya7V0gbYNy_9yXEJyl_tEN31c60SAE0q5XbjWkqWXL8pnnwjVIE&usqp=CAU',
     },
     {
       origin: 'Fast food',
       image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzVUXUNunkLw6GbIGmsOFuLwqqgAuWNeCPENRW4LotkyXg_xixOJF6DQ2vnRFYhaHh2I8&usqp=CAU',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs90UOinP_CL8jH8ogFDMyALHTSZZm57wd12hyRRc6MBf_npxCocjotqU8cNAw-vCbdA4&usqp=CAU',
+    },
+  ];
+
+  items = [
+    {
+      restaurant: 'Dessert',
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLO9oeBBZ47LGprum7bkD_5gIRx0DrOHSeQ&usqp=CAU',
+      time: 23,
+      price: 32,
+      rating: 3,
+      category: ['pizza', 'fast food'],
     },
     {
-      origin: 'All',
+      restaurant: 'Dessert',
       image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzVUXUNunkLw6GbIGmsOFuLwqqgAuWNeCPENRW4LotkyXg_xixOJF6DQ2vnRFYhaHh2I8&usqp=CAU',
-    }
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLO9oeBBZ47LGprum7bkD_5gIRx0DrOHSeQ&usqp=CAU',
+      time: 23,
+      price: 32,
+      rating: 3,
+      category: ['pizza', 'fast food'],
+    },
+    {
+      restaurant: 'Dessert',
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLO9oeBBZ47LGprum7bkD_5gIRx0DrOHSeQ&usqp=CAU',
+      time: 23,
+      price: 32,
+      rating: 3,
+      category: ['pizza', 'fast food'],
+    },
+    {
+      restaurant: 'Dessert',
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLO9oeBBZ47LGprum7bkD_5gIRx0DrOHSeQ&usqp=CAU',
+      time: 23,
+      price: 32,
+      rating: 3,
+      category: ['pizza', 'fast food'],
+    },
+    {
+      restaurant: 'Dessert',
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLO9oeBBZ47LGprum7bkD_5gIRx0DrOHSeQ&usqp=CAU',
+      time: 23,
+      price: 32,
+      rating: 3,
+      category: ['pizza', 'fast food'],
+    },
   ];
 
   constructor() {}
