@@ -19,6 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { EditprofileComponent } from './dialog/editprofile/editprofile.component';
 import { CartComponent } from './dialog/cart/cart.component';
 import { MenuComponent } from './user/menu/menu.component';
+import { OrderComponent } from './user/order/order.component';
+import { ReviewComponent } from './user/review/review.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { MenuComponent } from './user/menu/menu.component';
     EditprofileComponent,
     CartComponent,
     MenuComponent,
+    OrderComponent,
+    ReviewComponent,
   ],
   imports: [
     BrowserModule,
