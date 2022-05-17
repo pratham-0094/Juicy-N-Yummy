@@ -101,11 +101,11 @@
   </div>
   <div class="w-4/5 flex justify-between flex-col">
     <div class="flex text-xl my-2">
-      <a class="mx-14">Order</a>
-      <a class="mx-14">Reviews</a>
+      <a routerLink="/1/order" class="mx-14">Order</a>
+      <a routerLink="/1/review" class="mx-14">Reviews</a>
       <a class="mx-14">Cart ({{ cart.length }})</a>
     </div>
     <hr class="w-full text-taupe-gray border-b-2 border-taupe-gray" />
-    
+    <router-outlet></router-outlet>
   </div>
 </div>

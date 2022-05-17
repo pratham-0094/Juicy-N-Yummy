@@ -6,7 +6,9 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { HomeComponent } from './user/home/home.component';
 import { LoginComponent } from './user/login/login.component';
 import { MenuComponent } from './user/menu/menu.component';
+import { OrderComponent } from './user/order/order.component';
 import { RestaurantComponent } from './user/restaurant/restaurant.component';
+import { ReviewComponent } from './user/review/review.component';
 import { SignupComponent } from './user/signup/signup.component';
 
 const routes: Routes = [
@@ -51,6 +53,17 @@ const routes: Routes = [
   {
     path: ':id',
     component: MenuComponent,
+    children:
+    [
+      {
+        path: 'order',
+        component: OrderComponent,
+      },
+      {
+        path: 'review',
+        component: ReviewComponent,
+      },
+    ]
   },
 ];
 
