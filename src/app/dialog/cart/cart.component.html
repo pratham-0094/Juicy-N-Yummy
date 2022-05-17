@@ -28,22 +28,50 @@
   </div>
   <div class="m-5 mt-10 flex">
     <!-- cart item -->
-    <mat-dialog-content class="cart-item w-4/6 mr-10 mat-typography">
+    <mat-dialog-content class="cart w-4/6 mr-10 mat-typography">
       <!-- card -->
       <div
-        class="rounded-lg flex bg-flicker-pink hover:bg-danger my-5 ml-20 drop-shadow-2xl items-center justify-between mr-10"
+        class="rounded-lg flex bg-flicker-pink my-5 ml-20 drop-shadow-2xl items-center justify-between mr-10"
       >
-        <div class="flex justify-between w-full border-2 bg-white rounded-lg">
-          <img
-            height="150px"
-            width="150px"
-            class="m-1"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx__KaMkEMSGoUJ92p2M-m-IF8D0P1uoNBTQ&usqp=CAU"
-            alt=""
-          />
-          <div class="flex flex-col text-xl justify-between items-end">
-            <span class="m-1">Burger</span>
-            <span class="text-flicker-pink m-1">$ 10</span>
+        <div class="flex justify-between w-full border-2 bg-white cart-item rounded-lg">
+          <div class="flex items-end">
+            <img
+              height="150px"
+              width="150px"
+              class="m-1"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx__KaMkEMSGoUJ92p2M-m-IF8D0P1uoNBTQ&usqp=CAU"
+              alt=""
+            />
+            <div class="flex mx-4 items-center">
+              <svg
+                width="15"
+                height="5"
+                viewBox="0 0 10 1"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="cursor-pointer"
+              >
+                <path d="M0 0H10V1H0V0Z" fill="black" />
+              </svg>
+              <span class="text-lg mx-4">1</span>
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="cursor-pointer"
+              >
+                <path
+                  d="M5.625 4.375V0H4.375V4.375H0V5.625H4.375V10H5.625V5.625H10V4.375H5.625Z"
+                  fill="black"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="flex flex-col justify-between items-end mr-2">
+            <span class="text-2xl m-1">Burger</span>
+            <span class="text-flicker-pink text-lg m-1">$ 10</span>
           </div>
         </div>
         <svg
@@ -64,7 +92,7 @@
     <!-- amount -->
     <div class="w-2/6 flex m-10 flex-col">
       <div class="flex">
-        <div class="flex cart-item items-end flex-col text-xl mx-4 pr-6 w-40">
+        <div class="flex cart items-end flex-col text-xl mx-4 pr-6 w-40">
           <p>Total amount</p>
           <p>Discount</p>
         </div>

@@ -2,7 +2,3 @@
   background-image: url(../../../assets/images/bg.jpg);
   height: 60vh;
 }
-
-hr {
-  border-left: 1px solid hsla(200, 10%, 50%, 100);
-}

@@ -18,6 +18,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditprofileComponent } from './dialog/editprofile/editprofile.component';
 import { CartComponent } from './dialog/cart/cart.component';
+import { MenuComponent } from './user/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CartComponent } from './dialog/cart/cart.component';
     DashboardComponent,
     EditprofileComponent,
     CartComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,

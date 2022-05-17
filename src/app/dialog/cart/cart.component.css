@@ -1,7 +1,11 @@
-.cart-item {
+.cart {
   border-right: 2px solid rgb(202, 198, 198);
 }
 
 hr {
   color: rgb(158, 155, 155);
+}
+
+.cart-item {
+  box-shadow: 6px 0px 6px -2px white;
 }
