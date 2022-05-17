@@ -18,6 +18,7 @@ module.exports = {
       "yellow-pantone": "#F8DD12",
       "green-yellow-crayola": "#FAF199",
       "taupe-gray": "#888282",
+      "danger":"#f51111"
     },
   },
   plugins: [],
