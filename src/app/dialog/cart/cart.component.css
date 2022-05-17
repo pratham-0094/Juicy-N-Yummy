@@ -1,3 +1,7 @@
-.cart-item{
-    border-right:2px solid black ;
+.cart-item {
+  border-right: 2px solid rgb(202, 198, 198);
+}
+
+hr {
+  color: rgb(158, 155, 155);
 }
