@@ -17,6 +17,7 @@ export class MenuComponent implements OnInit {
     status: 'Open',
     Reviews: 23,
   };
+  cart = [{}];
 
   constructor() {}
 

@@ -58,7 +58,9 @@
         <span class="text-taupe-gray">Open at {{ restaurant.time[1] }} am</span>
       </p> -->
     </div>
-    <div class="flex bg-flicker-pink h-14 rounded-lg items-center text-white px-3">
+    <div
+      class="flex bg-flicker-pink h-14 rounded-lg items-center text-white px-3"
+    >
       <span class="text-lg mr-3">Reviews</span>
       <div class="flex items-center border-l-2 border-white h-full pl-3">
         <svg
@@ -96,5 +98,14 @@
         </svg>
       </div>
     </div>
+  </div>
+  <div class="w-4/5 flex justify-between flex-col">
+    <div class="flex text-xl my-2">
+      <a class="mx-14">Order</a>
+      <a class="mx-14">Reviews</a>
+      <a class="mx-14">Cart ({{ cart.length }})</a>
+    </div>
+    <hr class="w-full text-taupe-gray border-b-2 border-taupe-gray" />
+    
   </div>
 </div>
