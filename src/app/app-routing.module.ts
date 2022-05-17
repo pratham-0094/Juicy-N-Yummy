@@ -5,6 +5,7 @@ import { AdminsignupComponent } from './admin/adminsignup/adminsignup.component'
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { HomeComponent } from './user/home/home.component';
 import { LoginComponent } from './user/login/login.component';
+import { MenuComponent } from './user/menu/menu.component';
 import { RestaurantComponent } from './user/restaurant/restaurant.component';
 import { SignupComponent } from './user/signup/signup.component';
 
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: 'restaurant',
     component: RestaurantComponent,
+  },
+  {
+    path: ':id',
+    component: MenuComponent,
   },
 ];
 
