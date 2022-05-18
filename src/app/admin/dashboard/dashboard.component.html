@@ -103,19 +103,19 @@
     <div class="flex text-xl my-2 text-taupe-gray">
       <a
         [ngClass]="{ 'text-flicker-pink': router.url === '/:id/order' }"
-        routerLink="/1/order"
+        routerLink="/admin/dashboard/order"
         class="mx-14 font-regular"
         >Order</a
       >
       <a
-        [ngClass]="{ 'text-flicker-pink': router.url === '/:id/order' }"
-        routerLink="/1/review"
+        [ngClass]="{ 'text-flicker-pink': router.url === '/:id/review' }"
+        routerLink="/admin/dashboard/review"
         class="mx-14 font-regular"
         >Reviews</a
       >
       <a
         [ngClass]="{ 'text-flicker-pink': router.url === '/:id/add' }"
-        routerLink="/1/add"
+        routerLink="/admin/add"
         class="mx-14 font-regular flex items-center"
         >Add New
         <svg
