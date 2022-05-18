@@ -21,6 +21,8 @@ import { CartComponent } from './dialog/cart/cart.component';
 import { MenuComponent } from './user/menu/menu.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { OrderComponent } from './user/order/order.component';
+import { ReviewComponent } from './user/review/review.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     EditprofileComponent,
     CartComponent,
     MenuComponent,
+    OrderComponent,
+    ReviewComponent,
   ],
   imports: [
     BrowserModule,
