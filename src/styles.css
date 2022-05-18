@@ -11,12 +11,16 @@
 }
 
 body::-webkit-scrollbar {
-  width: 0.8em;
+  width: 0;
 }
 
  
 body::-webkit-scrollbar-thumb {
-  background-color: #F72585;
+  display: none;
+}
+
+.element::-webkit-scrollbar {
+  width: 0 !important;
 }
 
 html,
