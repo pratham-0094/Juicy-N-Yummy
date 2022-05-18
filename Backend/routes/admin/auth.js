@@ -28,9 +28,10 @@ router.post("/signup", async (req, res) => {
     let admin = await Admin.findOne({ phone_no: phone_no });
     if (admin) {
       let success = false;
-      return res
-        .status(400)
-        .json({ error: "Sorry a user with email or contact already exists" });
+      return res.json({
+        success,
+        error: "Sorry a user with email or contact already exists",
+      });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -60,7 +61,7 @@ router.post("/signup", async (req, res) => {
     res.json({ success, authtoken });
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Internal Server Error");
+    res.json({ success, msg: "Internal Server Error" });
   }
 });
 
@@ -74,9 +75,10 @@ router.post("/login", async (req, res) => {
     let admin = await Admin.findOne({ phone_no });
     if (!admin) {
       success = false;
-      return res
-        .status(400)
-        .json({ error: "Please try to login with correct credentials" });
+      return res.json({
+        success,
+        error: "Please try to login with correct credentials",
+      });
     }
 
     const data = {
@@ -90,7 +92,7 @@ router.post("/login", async (req, res) => {
     res.json({ success, authtoken });
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Internal Server Error");
+    res.json({ success, msg: "Internal Server Error" });
   }
 });
 

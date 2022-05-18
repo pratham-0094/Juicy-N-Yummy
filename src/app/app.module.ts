@@ -19,6 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { EditprofileComponent } from './dialog/editprofile/editprofile.component';
 import { CartComponent } from './dialog/cart/cart.component';
 import { MenuComponent } from './user/menu/menu.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { OrderComponent } from './user/order/order.component';
 import { ReviewComponent } from './user/review/review.component';
 
@@ -48,6 +50,8 @@ import { ReviewComponent } from './user/review/review.component';
     MatStepperModule,
     MatTabsModule,
     MatDialogModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

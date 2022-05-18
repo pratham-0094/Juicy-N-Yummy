@@ -10,29 +10,146 @@
           >
         </p>
       </div>
-      <form action="" class="flex flex-col">
+      <form (ngSubmit)="hello()" [formGroup]="signup" class="flex flex-col">
         <mat-form-field appearance="outline">
-          <mat-label>Phone No.</mat-label>
-          <input class="p-2" matInput placeholder="Phone No." />
+          <mat-label>Phone No. </mat-label>
+          <input
+            class="p-2"
+            formControlName="phone_no"
+            matInput
+            placeholder="Phone No."
+            type="number"
+          />
+          <mat-hint>
+            <div
+              *ngIf="
+                signup.get('phone_no')!.invalid &&
+                signup.get('phone_no')!.errors &&
+                (signup.get('phone_no')!.dirty ||
+                  signup.get('phone_no')!.touched)
+              "
+            >
+              <div
+                class="text-danger"
+                *ngIf="signup.get('phone_no')!.hasError('required')"
+              >
+                This field is required.
+              </div>
+              <div
+                class="text-danger"
+                *ngIf="signup.get('phone_no')!.hasError('minlength')"
+              >
+                The minimum length for this field is 8 digit.
+              </div>
+              <div
+                class="text-danger"
+                *ngIf="signup.get('phone_no')!.hasError('maxlength')"
+              >
+                The maximum length for this field is 10 digit.
+              </div>
+            </div>
+          </mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Name</mat-label>
-          <input class="p-2" matInput placeholder="Name" />
+          <input
+            class="p-2"
+            formControlName="name"
+            matInput
+            placeholder="Name"
+          />
+          <mat-hint>
+            <div
+              *ngIf="
+                signup.get('name')!.invalid &&
+                signup.get('name')!.errors &&
+                (signup.get('name')!.dirty || signup.get('name')!.touched)
+              "
+            >
+              <div
+                class="text-danger"
+                *ngIf="signup.get('name')!.hasError('required')"
+              >
+                This field is required.
+              </div>
+              <div
+                class="text-danger"
+                *ngIf="signup.get('name')!.hasError('minlength')"
+              >
+                The minimum length for this field is 6 character.
+              </div>
+            </div>
+          </mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input class="p-2" matInput placeholder="Email" />
+          <input
+            class="p-2"
+            formControlName="email"
+            matInput
+            placeholder="Email"
+          />
+          <mat-hint>
+            <div
+              *ngIf="
+                signup.get('email')!.invalid &&
+                signup.get('email')!.errors &&
+                (signup.get('email')!.dirty || signup.get('email')!.touched)
+              "
+            >
+              <div
+                class="text-danger"
+                *ngIf="signup.get('email')!.hasError('email')"
+              >
+                This field is email.
+              </div>
+            </div>
+          </mat-hint>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input type="password" class="p-2" matInput placeholder="Password" />
+          <input
+            type="password"
+            class="p-2"
+            formControlName="password"
+            matInput
+            placeholder="Password"
+          />
+          <mat-hint>
+            <div
+              *ngIf="
+                signup.get('password')!.invalid &&
+                signup.get('password')!.errors &&
+                (signup.get('password')!.dirty ||
+                  signup.get('password')!.touched)
+              "
+            >
+              <div
+                class="text-danger"
+                *ngIf="signup.get('password')!.hasError('required')"
+              >
+                This field is required.
+              </div>
+              <div
+                class="text-danger"
+                *ngIf="signup.get('password')!.hasError('minlength')"
+              >
+                The minimum length for this field is 8 character.
+              </div>
+            </div>
+          </mat-hint>
         </mat-form-field>
-        <a
-          routerLink=""
-          class="bg-flicker-pink rounded-lg text-white text-center mx-36"
+        <button
+          [disabled]="signup.invalid"
+          type="submit"
+          [ngClass]="{
+            'bg-silver text-black': signup.invalid,
+            'text-white': signup.valid
+          }"
+          class="bg-flicker-pink m-4 text-base rounded-lg text-center py-3 px-8 mx-auto"
         >
-          <button class="m-2 text-base">Continue</button>
-        </a>
+          Continue
+        </button>
       </form>
       <p class="text-xs text-center px-10 pt-5">
         By clicking on continue,<span class="font-bold">
