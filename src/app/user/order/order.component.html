@@ -1,23 +1,23 @@
-<div class="flex h-screen overflow-hidden relative">
+<div class="flex h-screen overflow-hidden">
   <div class="border-taupe-gray h-full border-r-2 h-full">
     <ul class="text-xl font-regular">
-      <li class="ml-14 pr-28 py-3 text-taupe-gray">All ({{ items.length }})</li>
-      <li class="ml-14 pr-28 py-3 text-taupe-gray">
+      <li class="ml-14 cursor-pointer w-52 py-4 text-taupe-gray">All ({{ items.length }})</li>
+      <li class="ml-14 cursor-pointer w-52 py-4 text-taupe-gray">
         Pizza ({{ items.length }})
       </li>
-      <li class="ml-14 pr-28 py-3 text-taupe-gray">
+      <li class="ml-14 cursor-pointer w-52 py-4 text-taupe-gray">
         Burger ({{ items.length }})
       </li>
-      <li class="ml-14 pr-28 py-3 text-taupe-gray">
+      <li class="ml-14 cursor-pointer w-52 py-4 text-taupe-gray">
         Cake ({{ items.length }})
       </li>
-      <li class="ml-14 pr-28 py-3 text-taupe-gray">
+      <li class="ml-14 cursor-pointer w-52 py-4 text-taupe-gray">
         Cold Drinks({{ items.length }})
       </li>
     </ul>
   </div>
   <div
-    class="ml-10 pt-5 h-screen overflow-y-scroll w-full absolute inset-y-0 inset-x-1/4"
+    class="ml-10 element h-screen overflow-y-scroll w-full"
   >
     <div *ngFor="let item of items" class="flex my-10">
       <img class="w-28 h-28 rounded-lg" src="{{ item.image }}" alt="" />
