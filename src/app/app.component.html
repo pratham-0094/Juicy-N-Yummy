@@ -38,8 +38,15 @@
       </div>
     </div>
     <div class="flex m-5 items-center">
-      <button mat-button (click)="cart()" class="mx-6">Log out</button>
+      <button class="text-taupe-gray mx-6">Log out</button>
       <button
+      [ngClass]="{
+        hidden:
+          router.url === '/admin/dashboard'|| 
+          router.url === '/admin/dashboard/order'||
+          router.url === '/admin/dashboard/review'|| 
+          router.url === '/admin/dashboard/add'
+      }"
         mat-button
         (click)="edit()"
         class="bg-yellow-pantone text-flicker-pink rounded-lg flex p-2 mx-6"

@@ -100,10 +100,20 @@
     </div>
   </div>
   <div class="w-4/5 flex justify-between flex-col">
-    <div class="flex text-xl my-2">
-      <a routerLink="/1/order" class="mx-14">Order</a>
-      <a routerLink="/1/review" class="mx-14">Reviews</a>
-      <a class="mx-14">Cart ({{ cart.length }})</a>
+    <div class="flex text-xl my-2 text-taupe-gray">
+      <a
+        [ngClass]="{ 'text-flicker-pink': router.url === '/:id/order' }"
+        routerLink="/1/order"
+        class="mx-14 font-regular"
+        >Order</a
+      >
+      <a
+        [ngClass]="{ 'text-flicker-pink': router.url === '/:id/review' }"
+        routerLink="/1/review"
+        class="mx-14 font-regular"
+        >Reviews</a
+      >
+      <button mat-button (click)="opencart()" class="mx-14 font-regular">Cart ({{ cart.length }})</button>
     </div>
     <hr class="w-full text-taupe-gray border-b-2 border-taupe-gray" />
     <router-outlet></router-outlet>
