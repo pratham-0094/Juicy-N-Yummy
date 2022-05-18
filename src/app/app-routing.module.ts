@@ -43,6 +43,16 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
+        children: [
+          {
+            path: 'order',
+            component: OrderComponent,
+          },
+          {
+            path: 'review',
+            component: ReviewComponent,
+          },
+        ],
       },
     ],
   },
@@ -53,8 +63,7 @@ const routes: Routes = [
   {
     path: ':id',
     component: MenuComponent,
-    children:
-    [
+    children: [
       {
         path: 'order',
         component: OrderComponent,
@@ -63,7 +72,7 @@ const routes: Routes = [
         path: 'review',
         component: ReviewComponent,
       },
-    ]
+    ],
   },
 ];
 
