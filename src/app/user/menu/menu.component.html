@@ -113,7 +113,7 @@
         class="mx-14 font-regular"
         >Reviews</a
       >
-      <a class="mx-14 font-regular">Cart ({{ cart.length }})</a>
+      <button mat-button (click)="opencart()" class="mx-14 font-regular">Cart ({{ cart.length }})</button>
     </div>
     <hr class="w-full text-taupe-gray border-b-2 border-taupe-gray" />
     <router-outlet></router-outlet>
