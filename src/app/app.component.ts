@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { EditprofileComponent } from './dialog/editprofile/editprofile.component';
-import { CartComponent } from './dialog/cart/cart.component';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +14,5 @@ export class AppComponent {
 
   edit() {
     this.dialog.open(EditprofileComponent);
-  }
-
-  cart() {
-    this.dialog.open(CartComponent);
   }
 }

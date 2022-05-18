@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { MatDialog } from '@angular/material/dialog';
+import { CartComponent } from 'src/app/dialog/cart/cart.component';
 
 @Component({
   selector: 'app-menu',
@@ -21,7 +22,11 @@ export class MenuComponent implements OnInit {
   };
   cart = [{}];
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, public dialog: MatDialog) {}
 
   ngOnInit(): void {}
+
+  opencart() {
+    this.dialog.open(CartComponent);
+  }
 }

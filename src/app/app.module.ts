@@ -23,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OrderComponent } from './user/order/order.component';
 import { ReviewComponent } from './user/review/review.component';
+import { AddComponent } from './admin/add/add.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ReviewComponent } from './user/review/review.component';
     MenuComponent,
     OrderComponent,
     ReviewComponent,
+    AddComponent,
   ],
   imports: [
     BrowserModule,
