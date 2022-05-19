@@ -10,16 +10,55 @@
           >
         </p>
       </div>
-      <form action="" class="flex flex-col">
+      <form (ngSubmit)="userLogin()" [formGroup]="login" class="flex flex-col">
         <mat-form-field appearance="outline">
           <mat-label>Phone No.</mat-label>
-          <input class="p-2" matInput placeholder="Phone No." />
+          <input
+            class="p-2"
+            formControlName="phone_no"
+            matInput
+            placeholder="Phone No."
+            type="number"
+          />
+          <mat-hint>
+            <div
+              *ngIf="
+                login.get('phone_no')!.invalid &&
+                login.get('phone_no')!.errors &&
+                (login.get('phone_no')!.dirty || login.get('phone_no')!.touched)
+              "
+            >
+              <div
+                class="text-danger"
+                *ngIf="login.get('phone_no')!.hasError('required')"
+              >
+                This field is required.
+              </div>
+              <div
+                class="text-danger"
+                *ngIf="login.get('phone_no')!.hasError('minlength')"
+              >
+                The minimum length for this field is 8 digit.
+              </div>
+              <div
+                class="text-danger"
+                *ngIf="login.get('phone_no')!.hasError('maxlength')"
+              >
+                The maximum length for this field is 10 digit.
+              </div>
+            </div>
+          </mat-hint>
         </mat-form-field>
         <button
+          [disabled]="login.invalid"
           type="submit"
-          class="bg-flicker-pink m-2 text-base rounded-lg text-white text-center py-3 px-8 mx-auto"
+          [ngClass]="{
+            'bg-silver text-black': login.invalid,
+            'text-white': login.valid
+          }"
+          class="bg-flicker-pink m-4 text-base rounded-lg text-center py-3 px-8 mx-auto"
         >
-          Log in
+          Continue
         </button>
       </form>
       <p class="text-xs text-center px-10 pt-5">

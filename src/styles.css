@@ -14,9 +14,8 @@ body::-webkit-scrollbar {
   width: 0.8em;
 }
 
- 
 body::-webkit-scrollbar-thumb {
-  background-color: #F72585;
+  background-color: #f72585;
 }
 
 html,
@@ -27,4 +26,12 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
