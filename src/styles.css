@@ -11,16 +11,17 @@
 }
 
 body::-webkit-scrollbar {
-  width: 0.8em;
+  width: 0;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #f72585;
+  display: none;
 }
 
 html,
 body {
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
