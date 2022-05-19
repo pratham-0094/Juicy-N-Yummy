@@ -38,32 +38,34 @@
       </div>
     </div>
     <div class="flex m-5 items-center">
-      <button class="text-taupe-gray mx-6">Log out</button>
       <button
-      [ngClass]="{
-        hidden:
-          router.url === '/admin/dashboard'|| 
-          router.url === '/admin/dashboard/order'||
-          router.url === '/admin/dashboard/review'|| 
-          router.url === '/admin/dashboard/add'
-      }"
+        *ngIf="userAuth || adminAuth"
+        (click)="logout()"
+        mat-button
+        class="mx-6"
+      >
+        Log out
+      </button>
+      <button
+        *ngIf="userAuth"
+      <button
         mat-button
         (click)="edit()"
-        class="bg-yellow-pantone text-flicker-pink rounded-lg flex p-2 mx-6"
+        class="bg-yellow-pantone text-flicker-pink rounded-lg flex p-1 mx-3"
       >
         <img
-          class="rounded-full w-7 h-7 mr-3"
+          class="rounded-full w-6 h-6 mr-3"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaUTp3j_LpF5r5_gNdvW0g7p057ExdcHWbUQ&usqp=CAU"
           alt=""
         />
         Profile
       </button>
     </div>
-    <!-- <div class="flex m-5 items-center">
+    <div *ngIf="!(userAuth || adminAuth)" class="flex m-5 items-center">
       <a routerLink="/admin/login" class="mx-6">Add Restaurant</a>
       <a routerLink="/auth/login" class="mx-6">Log in</a>
       <a routerLink="/auth//signup" class="mx-6">Sign up</a>
-    </div> -->
+    </div>
   </div>
 </nav>
 <router-outlet></router-outlet>

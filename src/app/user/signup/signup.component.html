@@ -10,7 +10,11 @@
           >
         </p>
       </div>
-      <form (ngSubmit)="hello()" [formGroup]="signup" class="flex flex-col">
+      <form
+        (ngSubmit)="userSignup()"
+        [formGroup]="signup"
+        class="flex flex-col"
+      >
         <mat-form-field appearance="outline">
           <mat-label>Phone No. </mat-label>
           <input

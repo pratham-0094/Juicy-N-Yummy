@@ -1,3 +1,3 @@
 export class userLogin{
-    password!:string
+    phone_no!:string
 }

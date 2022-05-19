@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { userSignup } from 'src/app/modal/userSignup';
+import { userSignup } from 'src/app/model/userSignup';
 import { UserAuthService } from 'src/app/service/user-auth.service';
 
 @Component({
@@ -17,10 +13,7 @@ export class SignupComponent implements OnInit {
   signup: FormGroup;
   credential!: userSignup;
 
-  constructor(
-    private userAuth: UserAuthService,
-    private router: Router
-  ) {
+  constructor(private userAuth: UserAuthService, private router: Router) {
     this.signup = new FormGroup({
       phone_no: new FormControl('', [
         Validators.required,
@@ -36,9 +29,16 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (localStorage.getItem('userAuth')) {
+      this.router.navigateByUrl('/restaurant');
+    }
+    if (localStorage.getItem('adminAuth')) {
+      this.router.navigateByUrl('/admin/dashboard');
+    }
+  }
 
-  hello() {
+  userSignup() {
     if (this.signup.valid) {
       const credential = {
         name: this.signup.value['name'],
@@ -46,9 +46,12 @@ export class SignupComponent implements OnInit {
         phone_no: this.signup.value['phone_no'],
         password: this.signup.value['password'],
       };
+      this.signup.reset();
       this.userAuth.signup(credential);
-      if (localStorage.getItem('userAuth')) {
-        this.router.navigateByUrl('/restaurant')
+      if (localStorage.getItem('userAuth') !== null) {
+        this.router.navigateByUrl('/restaurant');
+      } else {
+        alert('invalid credential');
       }
     }
   }
