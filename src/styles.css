@@ -10,11 +10,11 @@
   box-sizing: border-box;
 }
 
-body::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 0;
 }
 
-body::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   display: none;
 }
 

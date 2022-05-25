@@ -96,7 +96,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// Route 3 :- Get user details
+// Route 3 :- Get admin details
 router.get("/getadmin", adminsInfo, async (req, res) => {
   try {
     let adminId = req.admin.id;
@@ -108,15 +108,16 @@ router.get("/getadmin", adminsInfo, async (req, res) => {
   }
 });
 
-// Route 4 :- Edit user details
+// Route 4 :- Edit admin details
 router.put("/edit", adminsInfo, async (req, res) => {
   let success = false;
-  let { name, email, phone_no, duration } = req.body;
+  let { name, email, phone_no, duration, status } = req.body;
   const admin = {
     name,
     email,
     phone_no,
     duration,
+    status,
   };
   try {
     let adminId = req.admin.id;
