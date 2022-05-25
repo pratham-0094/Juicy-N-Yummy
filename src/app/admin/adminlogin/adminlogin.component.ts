@@ -34,11 +34,11 @@ export class AdminloginComponent implements OnInit {
 
   adminLogin() {
     if (this.login.valid) {
-      const credential = {
+      this.credential = {
         phone_no: this.login.value['phone_no'],
       };
       this.login.reset();
-      this.adminAuth.login(credential);
+      this.adminAuth.login(this.credential);
     }
   }
 }

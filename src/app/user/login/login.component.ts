@@ -35,11 +35,11 @@ export class LoginComponent implements OnInit {
 
   userLogin() {
     if (this.login.valid) {
-      const credential = {
+      this.credential = {
         phone_no: this.login.value['phone_no'],
       };
       this.login.reset();
-      this.userAuth.login(credential);
+      this.userAuth.login(this.credential);
     }
   }
 }

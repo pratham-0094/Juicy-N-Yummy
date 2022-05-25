@@ -45,7 +45,7 @@ export class AdminsignupComponent implements OnInit {
 
   adminSignup() {
     if (this.signup.valid) {
-      const credential = {
+      this.credential = {
         name: this.signup.value['name'],
         email: this.signup.value['email'],
         phone_no: this.signup.value['phone_no'],
@@ -57,7 +57,7 @@ export class AdminsignupComponent implements OnInit {
         landmark: this.signup.value['landmark'],
       };
       this.signup.reset();
-      this.adminAuth.signup(credential);
+      this.adminAuth.signup(this.credential);
     }
   }
 }
