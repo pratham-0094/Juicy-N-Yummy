@@ -19,7 +19,7 @@ const Review = new Schema({
     ref: "Admin",
   },
   rating: {
-    type: number,
+    type: Number,
     required: true,
   },
 });
