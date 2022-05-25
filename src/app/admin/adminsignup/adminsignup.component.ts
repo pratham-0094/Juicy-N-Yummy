@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormControlName,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { adminAuthSignup } from 'src/app/model/adminAuthSignup';
 import { AdminAuthService } from 'src/app/service/admin-auth.service';
-import { UserAuthService } from 'src/app/service/user-auth.service';
 
 @Component({
   selector: 'app-adminsignup',
@@ -19,7 +13,7 @@ export class AdminsignupComponent implements OnInit {
   signup: FormGroup;
   credential!: adminAuthSignup;
 
-  constructor(private userAuth: AdminAuthService, private router: Router) {
+  constructor(private adminAuth: AdminAuthService, private router: Router) {
     this.signup = new FormGroup({
       phone_no: new FormControl('', [
         Validators.required,
@@ -63,12 +57,7 @@ export class AdminsignupComponent implements OnInit {
         landmark: this.signup.value['landmark'],
       };
       this.signup.reset();
-      this.userAuth.signup(credential);
-      if (localStorage.getItem('adminAuth') !== null) {
-        this.router.navigateByUrl('/admin/dashboard');
-      } else {
-        alert('invalid credential');
-      }
+      this.adminAuth.signup(credential);
     }
   }
 }

@@ -48,11 +48,6 @@ export class SignupComponent implements OnInit {
       };
       this.signup.reset();
       this.userAuth.signup(credential);
-      if (localStorage.getItem('userAuth') !== null) {
-        this.router.navigateByUrl('/restaurant');
-      } else {
-        alert('invalid credential');
-      }
     }
   }
 }
