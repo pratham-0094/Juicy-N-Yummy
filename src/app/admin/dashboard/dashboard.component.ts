@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { EditadminComponent } from 'src/app/dialog/editadmin/editadmin.component';
+import { adminProfile } from 'src/app/model/adminProfile';
+import { AdminAuthService } from 'src/app/service/admin-auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,16 +14,30 @@ export class DashboardComponent implements OnInit {
   image =
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDdXe0hajBeJE3JoCGhVISj9i33tInKL9pHw&usqp=CAU';
 
-  restaurant = {
-    name: 'Pizza Hut',
-    category: ['Pizza', 'Burger'],
-    address: 'Janjgir chowk, Naila',
-    time: [9, 12],
-    status: 'Open',
-    Reviews: 23,
-  };
+  profile!: any;
+  now!: Number;
 
-  constructor(public router: Router) {}
+  constructor(
+    public router: Router,
+    private adminAuth: AdminAuthService,
+    public dialog: MatDialog
+  ) {
+    this.adminAuth.getAdmin().subscribe((data: adminProfile) => {
+      this.profile = {
+        restaurant: data.restaurant,
+        category: data.category,
+        address: data.address,
+        duration: data.duration,
+        status: data.status,
+        Reviews: 23,
+      };
+    });
+    this.now = new Date().getHours();
+  }
+
+  openedit() {
+    this.dialog.open(EditadminComponent);
+  }
 
   ngOnInit(): void {}
 }
