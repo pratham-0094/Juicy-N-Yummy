@@ -40,19 +40,14 @@ export class SignupComponent implements OnInit {
 
   userSignup() {
     if (this.signup.valid) {
-      const credential = {
+      this.credential = {
         name: this.signup.value['name'],
         email: this.signup.value['email'],
         phone_no: this.signup.value['phone_no'],
         password: this.signup.value['password'],
       };
       this.signup.reset();
-      this.userAuth.signup(credential);
-      if (localStorage.getItem('userAuth') !== null) {
-        this.router.navigateByUrl('/restaurant');
-      } else {
-        alert('invalid credential');
-      }
+      this.userAuth.signup(this.credential);
     }
   }
 }

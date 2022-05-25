@@ -25,6 +25,30 @@
           placeholder="Email"
         />
       </mat-form-field>
+      <div class="w-full flex">
+        <mat-form-field appearance="outline" class="w-1/2">
+          <mat-label>Open</mat-label>
+          <input
+          class="p-2 mr-1"
+            matInput
+            formControlName="openTime"
+            placeholder=""
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="w-1/2">
+          <mat-label>Close</mat-label>
+          <input
+            class="p-2 ml-1"
+            matInput
+            formControlName="closeTime"
+            placeholder=""
+          />
+        </mat-form-field>
+      </div>
+      <mat-radio-group formControlName="status" aria-label="Select an option" class="flex justify-evenly">
+        <mat-radio-button value="true">Open</mat-radio-button>
+        <mat-radio-button value="false">Closed</mat-radio-button>
+      </mat-radio-group>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">

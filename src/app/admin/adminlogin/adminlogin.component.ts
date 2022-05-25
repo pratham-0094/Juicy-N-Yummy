@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserAuthService } from 'src/app/service/user-auth.service';
 import { adminAuthLogin } from 'src/app/model/adminAuthLogin';
 import { AdminAuthService } from 'src/app/service/admin-auth.service';
 
@@ -14,7 +13,7 @@ export class AdminloginComponent implements OnInit {
   login: FormGroup;
   credential!: adminAuthLogin;
 
-  constructor(private userAuth: AdminAuthService, private router: Router) {
+  constructor(private adminAuth: AdminAuthService, private router: Router) {
     this.login = new FormGroup({
       phone_no: new FormControl('', [
         Validators.required,
@@ -35,16 +34,11 @@ export class AdminloginComponent implements OnInit {
 
   adminLogin() {
     if (this.login.valid) {
-      const credential = {
+      this.credential = {
         phone_no: this.login.value['phone_no'],
       };
       this.login.reset();
-      this.userAuth.login(credential);
-      if (localStorage.getItem('adminAuth') !== null) {
-        this.router.navigateByUrl('/admin/dashboard');
-      } else {
-        alert('invalid credential');
-      }
+      this.adminAuth.login(this.credential);
     }
   }
 }

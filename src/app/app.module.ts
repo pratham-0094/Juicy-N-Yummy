@@ -24,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { OrderComponent } from './user/order/order.component';
 import { ReviewComponent } from './user/review/review.component';
 import { AddComponent } from './admin/add/add.component';
+import { EditadminComponent } from './dialog/editadmin/editadmin.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { AddComponent } from './admin/add/add.component';
     OrderComponent,
     ReviewComponent,
     AddComponent,
+    EditadminComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { AddComponent } from './admin/add/add.component';
     MatDialogModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

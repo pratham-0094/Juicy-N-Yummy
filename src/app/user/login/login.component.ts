@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { waitForAsync } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { userLogin } from 'src/app/model/userLogin';
@@ -34,16 +35,11 @@ export class LoginComponent implements OnInit {
 
   userLogin() {
     if (this.login.valid) {
-      const credential = {
+      this.credential = {
         phone_no: this.login.value['phone_no'],
       };
       this.login.reset();
-      this.userAuth.login(credential);
-      if (localStorage.getItem('userAuth') !== null) {
-        this.router.navigateByUrl('/restaurant');
-      } else {
-        alert('invalid credential');
-      }
+      this.userAuth.login(this.credential);
     }
   }
 }
