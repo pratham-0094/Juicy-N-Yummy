@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const router = express.Router();
 
 const Items = require("../../models/items");
+const Review = require("../../models/review");
 var adminsInfo = require("../../middleware/admin-info");
 
 // Route 1 :- Create item
@@ -60,6 +61,29 @@ router.get("/get", adminsInfo, async (req, res) => {
   try {
     let items = await Items.find({ restaurantId: adminId });
     res.json(items);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Route  :- Delete review
+router.delete("/review/:id", adminsInfo, async (req, res) => {
+  let adminId = req.admin.id;
+
+  try {
+    let review = await Review.findById(req.params.id);
+
+    if (!review) {
+      return res.status(404).send("Not Found");
+    }
+
+    if (review.restaurantId.toString() !== adminId) {
+      return res.status(401).send("Not Allowed");
+    }
+
+    review = await Review.findByIdAndDelete(req.params.id);
+    res.json({ Success: "review has been deleted" });
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
