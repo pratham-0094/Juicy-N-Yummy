@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { userLogin } from '../model/userLogin';
 import { userSignup } from '../model/userSignup';
 
@@ -7,7 +8,7 @@ import { userSignup } from '../model/userSignup';
   providedIn: 'root',
 })
 export class UserAuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   signup(credential: userSignup) {
     const header = new HttpHeaders().set('content-Type', 'application/json');
@@ -20,6 +21,9 @@ export class UserAuthService {
         if (Response.success) {
           localStorage.setItem('userAuth', Response.authtoken);
           console.log(localStorage.getItem('userAuth'));
+          this.router.navigateByUrl('/restaurant');
+        } else {
+          alert('invalid credential');
         }
       });
   }
@@ -35,6 +39,9 @@ export class UserAuthService {
         if (Response.success) {
           localStorage.setItem('userAuth', Response.authtoken);
           console.log(localStorage.getItem('userAuth'));
+          this.router.navigateByUrl('/restaurant');
+        } else {
+          alert('invalid credential');
         }
       });
   }
