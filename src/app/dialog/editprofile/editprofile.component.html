@@ -1,41 +1,59 @@
 <h2 mat-dialog-title>Change Profile</h2>
-<mat-dialog-content class="mat-typography">
-  <div class="flex flex-col my-5 w-64 mx-80">
-    <mat-form-field appearance="outline">
-      <mat-label>Phone No.</mat-label>
-      <input class="p-2" matInput placeholder="Phone No." />
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Name</mat-label>
-      <input class="p-2" matInput placeholder="Name" />
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Email</mat-label>
-      <input class="p-2" matInput placeholder="Email" />
-    </mat-form-field>
-  </div>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close class="mx-3 text-lg text-taupe-gray">
-    Cancel
-  </button>
-  <button
-    mat-button
-    [mat-dialog-close]="true"
-    cdkFocusInitial
-    class="bg-flicker-pink text-white rounded-lg font-medium p-3 px-5 mx-3"
-  >
-    <svg
-      width="30"
-      height="15"
-      viewBox="0 0 44 15"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+<form (ngSubmit)="edit()" [formGroup]="profile">
+  <mat-dialog-content class="mat-typography">
+    <div class="flex flex-col my-5 w-64 mx-80">
+      <mat-form-field appearance="outline">
+        <mat-label>Phone No.</mat-label>
+        <input
+          type="number"
+          class="p-2"
+          matInput
+          formControlName="phone_no"
+          placeholder="Phone No."
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input class="p-2" matInput formControlName="name" placeholder="Name" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          class="p-2"
+          matInput
+          formControlName="email"
+          placeholder="Email"
+        />
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="mx-3 text-lg text-taupe-gray">
+      Cancel
+    </button>
+    <button
+      mat-button
+      [disabled]="profile.invalid"
+      type="submit"
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+      [ngClass]="{
+        'bg-flicker-pink': profile.valid
+      }"
+      class="text-white rounded-lg font-medium p-3 px-5 mx-3"
     >
-      <path
-        d="M43.7195 7.95089C44.1031 7.55351 44.0919 6.92045 43.6945 6.5369L37.2189 0.286585C36.8215 -0.0969649 36.1884 -0.0857568 35.8049 0.311619C35.4213 0.708996 35.4325 1.34206 35.8299 1.72561L41.586 7.28144L36.0302 13.0375C35.6466 13.4349 35.6578 14.068 36.0552 14.4515C36.4526 14.8351 37.0857 14.8239 37.4692 14.4265L43.7195 7.95089ZM1.0177 8.99984L43.0177 8.25625L42.9823 6.25657L0.982298 7.00016L1.0177 8.99984Z"
-        fill="black"
-      />
-    </svg>
-  </button>
-</mat-dialog-actions>
+      <svg
+        width="30"
+        height="15"
+        viewBox="0 0 44 15"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M43.7195 7.95089C44.1031 7.55351 44.0919 6.92045 43.6945 6.5369L37.2189 0.286585C36.8215 -0.0969649 36.1884 -0.0857568 35.8049 0.311619C35.4213 0.708996 35.4325 1.34206 35.8299 1.72561L41.586 7.28144L36.0302 13.0375C35.6466 13.4349 35.6578 14.068 36.0552 14.4515C36.4526 14.8351 37.0857 14.8239 37.4692 14.4265L43.7195 7.95089ZM1.0177 8.99984L43.0177 8.25625L42.9823 6.25657L0.982298 7.00016L1.0177 8.99984Z"
+          fill="black"
+        />
+      </svg>
+    </button>
+  </mat-dialog-actions>
+</form>
