@@ -1,17 +1,27 @@
-<div class="flex">
-  <div class="border-taupe-gray h-full border-r-2 h-full">
-    <ul class="text-xl font-regular">
-      <li class="ml-14 cursor-pointer w-52 py-4 text-taupe-gray">All</li>
-      <li class="ml-14 cursor-pointer w-52 py-4 text-taupe-gray">Pizza</li>
-      <li class="ml-14 cursor-pointer w-52 py-4 text-taupe-gray">Burger</li>
-      <li class="ml-14 cursor-pointer w-52 py-4 text-taupe-gray">Cake</li>
-      <li class="ml-14 cursor-pointer w-52 py-4 text-taupe-gray">
-        Cold Drinks
-      </li>
-    </ul>
-  </div>
-  <div class="ml-20 mt-10 flex justify-center">
-    <form action="" class="flex items-center">
+<div class="h-screen flex">
+  <form
+    [formGroup]="addcategory"
+    (ngSubmit)="category_add()"
+    class="flex flex-col p-10 h-full border-r-2"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label>Category</mat-label>
+      <input
+        class=""
+        formControlName="add"
+        matInput
+        placeholder="Add new category"
+      />
+    </mat-form-field>
+    <div class="text-lg">
+      <button type="reset" class="mx-5 text-base text-taupe-gray">
+        Cancel
+      </button>
+      <button type="submit" class="text-flicker-pink font-medium">Add</button>
+    </div>
+  </form>
+  <div class="ml-20 mt-10 flex">
+    <form [formGroup]="items_add" (ngSubmit)="addItem()" class="flex">
       <div class="flex pb-5">
         <label for="image"
           ><div
@@ -20,25 +30,66 @@
             <span class="text-taupe-gray"> Image Here</span>
           </div></label
         >
-        <input type="file" name="image" id="image" class="hidden" />
+        <input
+          #fileInput
+          type="file"
+          formControlName="food"
+          name="image"
+          id="image"
+          class="hidden"
+        />
       </div>
       <div class="flex flex-col ml-5">
         <mat-form-field appearance="outline">
           <mat-label>Food Name</mat-label>
-          <input class="" matInput placeholder="Phone No." />
+          <input class="" formControlName="name" matInput placeholder="Name" />
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Price</mat-label>
-          <input class="" matInput placeholder="Phone No." />
+          <input
+            type="number"
+            class=""
+            formControlName="price"
+            matInput
+            placeholder="Price"
+          />
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Category</mat-label>
-          <input class="" matInput placeholder="Phone No." />
+          <input
+            class=""
+            formControlName="category"
+            matInput
+            placeholder="Category"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Origin</mat-label>
+          <input
+            class=""
+            formControlName="origin"
+            matInput
+            placeholder="Origin"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Time</mat-label>
+          <input
+            class=""
+            type="number"
+            formControlName="time"
+            matInput
+            placeholder="Time"
+          />
         </mat-form-field>
       </div>
       <div class="text-lg">
-        <button class="mx-5 text-base text-taupe-gray">Cancel</button>
-        <button class="text-flicker-pink font-medium">Save</button>
+        <button type="reset" class="mx-5 text-base text-taupe-gray">
+          Cancel
+        </button>
+        <button type="submit" class="text-flicker-pink font-medium">
+          Save
+        </button>
       </div>
     </form>
   </div>
