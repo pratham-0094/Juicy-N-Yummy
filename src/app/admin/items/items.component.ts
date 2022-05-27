@@ -22,17 +22,16 @@ export class ItemsComponent implements OnInit {
   ) {
     this.adminAuth.getAdmin().subscribe((data: adminProfile) => {
       this.category = data.category;
-      this.id = data._id;
-      this.adminServiceAuth.getItems(this.id).subscribe((res: items[]) => {
-        this.item = res;
-      });
+    });
+    this.adminServiceAuth.getItems().subscribe((res: items[]) => {
+      this.item = res;
     });
   }
 
   remove(id: String) {
     this.adminServiceAuth.removeItems(id).subscribe((res) => {
       console.log(res);
-      this.adminServiceAuth.getItems(this.id).subscribe((res: items[]) => {
+      this.adminServiceAuth.getItems().subscribe((res: items[]) => {
         this.item = res;
       });
     });

@@ -72,7 +72,7 @@ const routes: Routes = [
     component: MenuComponent,
     children: [
       {
-        path: 'order',
+        path: '',
         component: OrderComponent,
       },
       {
