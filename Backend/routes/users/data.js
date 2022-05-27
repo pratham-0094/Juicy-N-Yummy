@@ -82,7 +82,7 @@ router.post("/review/:id", usersInfo, async (req, res) => {
 // Route 6 :- Get all review
 router.get("/review/get/:id", async (req, res) => {
   try {
-    let review = await Review.find({ restaurantId: req.params.id });
+    let review = await Review.find({ restaurant: req.params.id });
     res.json(review);
   } catch (error) {
     console.error(error.message);

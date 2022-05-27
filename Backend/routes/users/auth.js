@@ -4,6 +4,7 @@ var jwt = require("jsonwebtoken");
 const router = express.Router();
 
 const Users = require("../../models/users");
+const Admin = require("../../models/admin");
 var usersInfo = require("../../middleware/users-info");
 
 const JWT_SECRET = "Juicy-N-Yummy";
@@ -111,6 +112,18 @@ router.put("/edit", usersInfo, async (req, res) => {
     );
     success = true;
     res.json({ success });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Route 5 :- Get admin details
+router.get("/getadmin/:id", async (req, res) => {
+  try {
+    let adminId = req.params.id;
+    const admin = await Admin.findById(adminId).select("-password");
+    res.send(admin);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
