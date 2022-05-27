@@ -15,6 +15,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RestaurantComponent } from './user/restaurant/restaurant.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditprofileComponent } from './dialog/editprofile/editprofile.component';
 import { CartComponent } from './dialog/cart/cart.component';
@@ -62,6 +63,7 @@ import { FeedbackComponent } from './admin/feedback/feedback.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatRadioModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
