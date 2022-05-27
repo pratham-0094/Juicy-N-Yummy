@@ -1,5 +1,5 @@
 <div class="flex h-96 justify-between overflow-hidden">
-  <div class="ml-14 element overflow-y-scroll h-full ">
+  <div class="ml-14 element overflow-y-scroll h-full">
     <div *ngFor="let i of reviews" class="flex my-10">
       <img class="w-20 h-20 rounded-full" src="{{ image }}" alt="" />
       <div class="ml-2 w-96 flex justify-between">
@@ -11,7 +11,7 @@
         </div>
         <div class="flex justify-between flex-col">
           <div
-            class="flex items-center bg-taupe-gray py-1 rounded-lg justify-center"
+            class="flex items-center bg-taupe-gray py-1 rounded-lg justify-center px-4"
           >
             <span class="text-yellow-pantone">
               {{ i.rating }}
@@ -30,44 +30,57 @@
               />
             </svg>
           </div>
-          <button (click)="remove(i._id)" class="text-taupe-gray">Remove</button>
+          <button
+            (click)="remove(i._id)"
+            *ngIf="Auth === i.userId"
+            class="text-taupe-gray"
+          >
+            Remove
+          </button>
         </div>
       </div>
     </div>
   </div>
   <div class="w-2/5 my-10">
-    <h2>Write a review</h2>
-    <textarea
-      class="w-full bg-green-yellow-crayola rounded-xl h-36 focus:outline-none p-5"
-      name=""
-      id=""
-      cols="30"
-      rows="10"
-    ></textarea>
-    <div class="flex justify-between my-2 items-center">
-      <div class="flex">
-        <svg
-          *ngFor="let i of stars"
-          class="ml-1"
-          width="15"
-          height="15"
-          viewBox="0 0 12 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          (click)="click(i)"
-        >
-          <path
-            d="M11.6121 4.22554L8.01478 3.67806L6.40666 0.264102C6.36274 0.170629 6.29048 0.0949614 6.20122 0.0489671C5.97736 -0.0667604 5.70532 0.0296792 5.59339 0.264102L3.98528 3.67806L0.38791 4.22554C0.288731 4.24038 0.198053 4.28934 0.128627 4.36352C0.0446959 4.45386 -0.00155415 4.5754 3.98784e-05 4.70142C0.0016339 4.82745 0.0509416 4.94766 0.137128 5.03563L2.73987 7.69291L2.12496 11.4452C2.11054 11.5324 2.11976 11.6222 2.15159 11.7043C2.18341 11.7864 2.23655 11.8575 2.305 11.9095C2.37344 11.9616 2.45444 11.9925 2.53882 11.9988C2.6232 12.0051 2.70757 11.9865 2.78238 11.9452L6.00003 10.1736L9.21768 11.9452C9.30553 11.9941 9.40754 12.0104 9.5053 11.9926C9.75183 11.9481 9.9176 11.7033 9.8751 11.4452L9.26019 7.69291L11.8629 5.03563C11.9338 4.96293 11.9805 4.86798 11.9947 4.76412C12.033 4.50447 11.8601 4.26412 11.6121 4.22554Z"
-            [ngClass]="{'fill-taupe-gray':(num>=i)}"
-            stroke="black"
-            stroke-width="0.5"
-          />
-        </svg>
+    <form (ngSubmit)="addReview()" [formGroup]="reviewForm">
+      <h2>Write a review</h2>
+      <textarea
+        class="w-full bg-green-yellow-crayola rounded-xl h-36 focus:outline-none p-5"
+        name=""
+        id=""
+        formControlName="description"
+        cols="30"
+        rows="10"
+      ></textarea>
+      <div class="flex justify-between my-2 items-center">
+        <div class="flex">
+          <svg
+            *ngFor="let i of stars"
+            class="ml-1"
+            width="15"
+            height="15"
+            viewBox="0 0 12 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            (click)="click(i)"
+          >
+            <path
+              d="M11.6121 4.22554L8.01478 3.67806L6.40666 0.264102C6.36274 0.170629 6.29048 0.0949614 6.20122 0.0489671C5.97736 -0.0667604 5.70532 0.0296792 5.59339 0.264102L3.98528 3.67806L0.38791 4.22554C0.288731 4.24038 0.198053 4.28934 0.128627 4.36352C0.0446959 4.45386 -0.00155415 4.5754 3.98784e-05 4.70142C0.0016339 4.82745 0.0509416 4.94766 0.137128 5.03563L2.73987 7.69291L2.12496 11.4452C2.11054 11.5324 2.11976 11.6222 2.15159 11.7043C2.18341 11.7864 2.23655 11.8575 2.305 11.9095C2.37344 11.9616 2.45444 11.9925 2.53882 11.9988C2.6232 12.0051 2.70757 11.9865 2.78238 11.9452L6.00003 10.1736L9.21768 11.9452C9.30553 11.9941 9.40754 12.0104 9.5053 11.9926C9.75183 11.9481 9.9176 11.7033 9.8751 11.4452L9.26019 7.69291L11.8629 5.03563C11.9338 4.96293 11.9805 4.86798 11.9947 4.76412C12.033 4.50447 11.8601 4.26412 11.6121 4.22554Z"
+              [ngClass]="{ 'fill-taupe-gray': num >= i }"
+              stroke="black"
+              stroke-width="0.5"
+            />
+          </svg>
+        </div>
+        <div class="text-lg">
+          <button type="reset" class="mx-5 text-base text-taupe-gray">
+            Cancel
+          </button>
+          <button type="submit" class="text-flicker-pink font-medium">
+            Save
+          </button>
+        </div>
       </div>
-      <div class="text-lg">
-        <button class="mx-5 text-base text-taupe-gray">Cancel</button>
-        <button class="text-flicker-pink font-medium">Save</button>
-      </div>
-    </div>
+    </form>
   </div>
 </div>

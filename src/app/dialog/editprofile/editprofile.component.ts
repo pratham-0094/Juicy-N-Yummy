@@ -10,7 +10,7 @@ import { UserAuthService } from 'src/app/service/user-auth.service';
 })
 export class EditprofileComponent implements OnInit {
   profile: FormGroup;
-  editprofile!: userProfile;
+  editprofile!: any;
 
   constructor(private userAuth: UserAuthService) {
     this.profile = new FormGroup({

@@ -1,8 +1,8 @@
-<div class="h-screen flex">
+<div class="flex">
   <form
     [formGroup]="addcategory"
     (ngSubmit)="category_add()"
-    class="flex flex-col p-10 h-full border-r-2"
+    class="flex flex-col p-10 h-full"
   >
     <mat-form-field appearance="outline">
       <mat-label>Category</mat-label>
@@ -20,7 +20,7 @@
       <button type="submit" class="text-flicker-pink font-medium">Add</button>
     </div>
   </form>
-  <div class="ml-20 mt-10 flex">
+  <div class="pl-20 pt-10 flex border-l-2">
     <form [formGroup]="items_add" (ngSubmit)="addItem()" class="flex">
       <div class="flex pb-5">
         <label for="image"
@@ -54,23 +54,21 @@
             placeholder="Price"
           />
         </mat-form-field>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Category</mat-label>
-          <input
-            class=""
-            formControlName="category"
-            matInput
-            placeholder="Category"
-          />
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let food of category" [value]="food">
+              {{ food }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="fill">
           <mat-label>Origin</mat-label>
-          <input
-            class=""
-            formControlName="origin"
-            matInput
-            placeholder="Origin"
-          />
+          <mat-select formControlName="origin">
+            <mat-option *ngFor="let food of origin" [value]="food">
+              {{ food }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Time</mat-label>

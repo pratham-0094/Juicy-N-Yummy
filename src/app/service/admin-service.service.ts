@@ -20,8 +20,15 @@ export class AdminServiceService {
     });
   }
 
-  getItems(id: String) {
-    return this.http.get<items[]>('http://localhost:5000/restaurant/get/' + id);
+  getItems() {
+    let authtoken = localStorage.getItem('adminAuth') || '';
+    const header = new HttpHeaders()
+      .set('content-Type', 'application/json')
+      .set('auth-token', authtoken);
+    return this.http.get<items[]>(
+      'http://localhost:5000/admin/restaurant/get',
+      { headers: header }
+    );
   }
 
   removeItems(id: String) {
@@ -37,7 +44,7 @@ export class AdminServiceService {
 
   getReview(id: String) {
     return this.http.get<review[]>(
-      'http://localhost:5000/restaurant/review/get/' + id
+      'http://localhost:5000/admin/restaurant/review/' + id
     );
   }
 

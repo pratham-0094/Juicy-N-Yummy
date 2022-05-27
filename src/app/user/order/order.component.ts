@@ -1,10 +1,11 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { adminProfile } from 'src/app/model/adminProfile';
 import { items } from 'src/app/model/items';
 import { AdminAuthService } from 'src/app/service/admin-auth.service';
-import { AdminServiceService } from 'src/app/service/admin-service.service';
+import { CartServiceService } from 'src/app/service/cart-service.service';
+import { ItemServiceService } from 'src/app/service/item-service.service';
+import { UserAuthService } from 'src/app/service/user-auth.service';
 
 @Component({
   selector: 'app-order',
@@ -13,43 +14,40 @@ import { AdminServiceService } from 'src/app/service/admin-service.service';
 })
 export class OrderComponent implements OnInit {
   item!: items[];
-  category!: any;
+  category!: String[];
   id!: String;
 
   constructor(
-    private adminServiceAuth: AdminServiceService,
-    private adminAuth: AdminAuthService,
-    private location: Location,
+    private itemService: ItemServiceService,
+    private cartService: CartServiceService,
+    private userAuth: UserAuthService,
     private route: ActivatedRoute
   ) {
-    if (this.location.path() === '/admin/dashboard/order') {
-      this.adminAuth.getAdmin().subscribe((data: adminProfile) => {
-        this.category = data.category;
-        this.id = data._id;
-        this.adminServiceAuth.getItems(this.id).subscribe((res: items[]) => {
-          this.item = res;
-        });
-      });
-    } else {
-      this.adminAuth.getAdmin().subscribe((data: adminProfile) => {
-        this.category = data.category;
-      });
-      this.route.params.subscribe((params) => {
-        this.id = params['id'];
-        this.adminServiceAuth.getItems(this.id).subscribe((res: items[]) => {
-          this.item = res;
-        });
-      });
-    }
+    this.route.paramMap.subscribe((params) => {
+      this.id = params.get('id') ?? '';
+    });
+    this.userAuth.getAdminId(this.id).subscribe((data: adminProfile) => {
+      this.category = data.category;
+    });
+    this.itemService.getItems(this.id).subscribe((res: items[]) => {
+      this.item = res;
+    });
   }
 
-  remove(id: String) {
-    this.adminServiceAuth.removeItems(id).subscribe((res) => {
-      console.log(res);
-      this.adminServiceAuth.getItems(this.id).subscribe((res: items[]) => {
+  addToCart(k: any) {
+    this.cartService.add(this.item[k]);
+  }
+
+  filter(name: String) {
+    if (name === 'All') {
+      this.itemService.getItems(this.id).subscribe((res: items[]) => {
         this.item = res;
       });
-    });
+    } else {
+      this.itemService.getItems(this.id).subscribe((res) => {
+        this.item = res.filter((res) => res.category === name);
+      });
+    }
   }
 
   ngOnInit(): void {}
