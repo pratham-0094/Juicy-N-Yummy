@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { adminProfile } from '../model/adminProfile';
 import { userLogin } from '../model/userLogin';
 import { userProfile } from '../model/userProfile';
 import { userSignup } from '../model/userSignup';
@@ -53,6 +54,12 @@ export class UserAuthService {
     return this.http.get<userProfile>('http://localhost:5000/auth/getuser', {
       headers: header,
     });
+  }
+
+  getAdminId(id: String) {
+    return this.http.get<adminProfile>(
+      'http://localhost:5000/auth/getadmin/' + id
+    );
   }
 
   editUserProfile(credential: userProfile) {
