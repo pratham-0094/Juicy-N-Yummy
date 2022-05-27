@@ -67,8 +67,8 @@ router.get("/get", adminsInfo, async (req, res) => {
   }
 });
 
-// Route  :- Delete review
-router.delete("/review/:id", adminsInfo, async (req, res) => {
+// Route 4 :- Delete review
+router.delete("/review/delete/:id", adminsInfo, async (req, res) => {
   let adminId = req.admin.id;
 
   try {
@@ -78,12 +78,23 @@ router.delete("/review/:id", adminsInfo, async (req, res) => {
       return res.status(404).send("Not Found");
     }
 
-    if (review.restaurantId.toString() !== adminId) {
+    if (review.restaurant.toString() !== adminId) {
       return res.status(401).send("Not Allowed");
     }
 
     review = await Review.findByIdAndDelete(req.params.id);
     res.json({ Success: "review has been deleted" });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Route 5 :- Get all review
+router.get("/review/:id", async (req, res) => {
+  try {
+    let review = await Review.find({ restaurantId: req.params.id });
+    res.json(review);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
