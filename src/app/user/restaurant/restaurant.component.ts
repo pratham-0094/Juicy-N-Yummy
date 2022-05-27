@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { items } from 'src/app/model/items';
 import { RestaurantServiceService } from 'src/app/service/restaurant-service.service';
 
@@ -8,6 +9,10 @@ import { RestaurantServiceService } from 'src/app/service/restaurant-service.ser
   styleUrls: ['./restaurant.component.css'],
 })
 export class RestaurantComponent implements OnInit {
+  origin_value: boolean = true;
+  category_value: boolean = true;
+  
+
   origin = [
     {
       origin: 'Chinese',
@@ -59,11 +64,12 @@ export class RestaurantComponent implements OnInit {
     },
   ];
 
-  stars = [1, 2, 3, 4, 5];
-
   item!: items[];
 
-  constructor(private restaurantService: RestaurantServiceService) {
+  constructor(
+    private restaurantService: RestaurantServiceService,
+    private router: Router
+  ) {
     this.restaurantService.getAll();
     this.intialize();
   }
@@ -76,11 +82,20 @@ export class RestaurantComponent implements OnInit {
     });
   }
 
-  clicked() {
-    console.log('idsdj');
+  getOrigin(e: String) {
+    this.restaurantService.getByOrigin(e).subscribe((res: any) => {
+      this.item = res;
+    });
+    this.origin_value = false;
+    this.category_value = true;
   }
 
-  select_origin(e: string) {
-    console.log(e);
+  getCategory(e: String) {
+    this.restaurantService.getByCategory(e).subscribe((res: any) => {
+      this.item = res;
+    });
+    this.origin_value = true;
+    this.category_value = false;
   }
+
 }

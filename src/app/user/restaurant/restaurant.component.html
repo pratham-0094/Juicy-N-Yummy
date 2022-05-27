@@ -1,5 +1,5 @@
 <div class="md:container md:m-auto">
-  <div class="m-10 mx-40">
+  <div *ngIf="origin_value" class="m-10 mx-40">
     <h1 class="text-taupe-gray">Regional Food</h1>
     <div class="flex flex justify-evenly">
       <div
@@ -10,13 +10,13 @@
           class="m-4 border-2 border-black h-40 w-40 rounded-full cursor-pointer"
           src="{{ i.image }}"
           alt="{{ i.origin }}"
-          (click)="select_origin(i.origin)"
+          (click)="getOrigin(i.origin)"
         />
         <p class="text-xl text-flicker-pink font-medium">{{ i.origin }}</p>
       </div>
     </div>
   </div>
-  <div class="m-10 mx-40">
+  <div *ngIf="category_value" class="m-10 mx-40">
     <h1 class="text-taupe-gray">Suggestions for you</h1>
     <div class="flex flex justify-evenly">
       <div
@@ -27,7 +27,7 @@
           class="m-4 border-2 border-black h-36 w-36 rounded-full cursor-pointer"
           src="{{ i.image }}"
           alt="{{ i.origin }}"
-          (click)="select_origin(i.origin)"
+          (click)="getCategory(i.origin)"
         />
       </div>
     </div>
