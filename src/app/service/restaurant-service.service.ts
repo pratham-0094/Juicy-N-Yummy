@@ -1,9 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { items } from '../model/items';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RestaurantServiceService {
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
+  getAll() {
+    return this.http.get<items>('http://localhost:5000/restaurant/get');
+  }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { items } from 'src/app/model/items';
+import { RestaurantServiceService } from 'src/app/service/restaurant-service.service';
 
 @Component({
   selector: 'app-restaurant',
@@ -57,56 +59,27 @@ export class RestaurantComponent implements OnInit {
     },
   ];
 
-  items = [
-    {
-      id: 1,
-      restaurant: 'Dessert',
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLO9oeBBZ47LGprum7bkD_5gIRx0DrOHSeQ&usqp=CAU',
-      time: 23,
-      price: 32,
-      rating: 3,
-      category: ['pizza', 'fast food'],
-    },
-    {
-      id: 2,
-      restaurant: 'Dessert',
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLO9oeBBZ47LGprum7bkD_5gIRx0DrOHSeQ&usqp=CAU',
-      time: 23,
-      price: 32,
-      rating: 3,
-      category: ['pizza', 'fast food'],
-    },
-    {
-      id: 3,
-      restaurant: 'Dessert',
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLO9oeBBZ47LGprum7bkD_5gIRx0DrOHSeQ&usqp=CAU',
-      time: 23,
-      price: 32,
-      rating: 3,
-      category: ['pizza', 'fast food'],
-    },
-    {
-      id: 4,
-      restaurant: 'Dessert',
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLO9oeBBZ47LGprum7bkD_5gIRx0DrOHSeQ&usqp=CAU',
-      time: 23,
-      price: 32,
-      rating: 3,
-      category: ['pizza', 'fast food'],
-    },
-  ];
+  stars = [1, 2, 3, 4, 5];
 
-  constructor() {}
+  item!: items[];
+
+  constructor(private restaurantService: RestaurantServiceService) {
+    this.restaurantService.getAll();
+    this.intialize();
+  }
 
   ngOnInit(): void {}
+
+  intialize() {
+    this.restaurantService.getAll().subscribe((res: any) => {
+      this.item = res;
+    });
+  }
 
   clicked() {
     console.log('idsdj');
   }
+
   select_origin(e: string) {
     console.log(e);
   }
