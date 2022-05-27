@@ -8,43 +8,32 @@ import { AdminServiceService } from 'src/app/service/admin-service.service';
 
 @Component({
   selector: 'app-review',
-  templateUrl: './review.component.html',
-  styleUrls: ['./review.component.css'],
+  templateUrl: './feedback.component.html',
+  styleUrls: ['./feedback.component.css'],
 })
-export class ReviewComponent implements OnInit {
+export class FeedbackComponent implements OnInit {
   reviews!: review[];
+  auth!: Boolean;
   stars: number[] = [1, 2, 3, 4, 5];
   id!: String;
   image =
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTooPlWSljxJsQv2hyv2JgVd-Ozk0lA4WmV2A&usqp=CAU';
 
   num: number = 0;
+  click(e: number) {
+    this.num = e;
+  }
 
   constructor(
     private adminServiceAuth: AdminServiceService,
-    private adminAuth: AdminAuthService,
-    private location: Location,
-    private route: ActivatedRoute
+    private adminAuth: AdminAuthService
   ) {
-    if (this.location.path() === '/admin/dashboard/review') {
-      this.adminAuth.getAdmin().subscribe((data: adminProfile) => {
-        this.id = data._id;
-        this.adminServiceAuth.getReview(this.id).subscribe((res: review[]) => {
-          this.reviews = res;
-        });
+    this.adminAuth.getAdmin().subscribe((data: adminProfile) => {
+      this.id = data._id;
+      this.adminServiceAuth.getReview(this.id).subscribe((res: review[]) => {
+        this.reviews = res;
       });
-    } else {
-      this.route.params.subscribe((params) => {
-        this.id = params['id'];
-        this.adminServiceAuth.getReview(this.id).subscribe((res: review[]) => {
-          this.reviews = res;
-        });
-      });
-    }
-  }
-
-  click(e: number) {
-    this.num = e;
+    });
   }
 
   remove(id: String) {

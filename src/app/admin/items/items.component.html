@@ -34,7 +34,9 @@
           </svg>
         </div>
         <div class="flex justify-between flex-col text-right">
-          <button class="text-taupe-gray">Add to Cart</button>
+          <button class="text-taupe-gray" (click)="remove(i._id)">
+            remove
+          </button>
           <span class="text-flicker-pink text-xl font-medium"
             >${{ i.price }}</span
           >

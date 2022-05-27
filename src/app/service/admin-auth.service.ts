@@ -71,4 +71,18 @@ export class AdminAuthService {
         console.log(res);
       });
   }
+
+  addCategory(category: String) {
+    let authtoken = localStorage.getItem('adminAuth') || '';
+    const header = new HttpHeaders()
+      .set('content-Type', 'application/json')
+      .set('auth-token', authtoken);
+    this.http
+      .put('http://localhost:5000/admin/auth/edit', category, {
+        headers: header,
+      })
+      .subscribe((res) => {
+        console.log(res);
+      });
+  }
 }

@@ -1,8 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const { userInfo } = require("os");
 const router = express.Router();
 
+const usersInfo = require("../../middleware/users-info");
 const Items = require("../../models/items");
 const Review = require("../../models/review");
 
@@ -57,31 +57,42 @@ router.get("/category/:name", async (req, res) => {
 });
 
 // Route 5 :- Create review
-router.post("/review", userInfo, async (req, res) => {
+router.post("/review/:id", usersInfo, async (req, res) => {
   let success = false;
   let userId = req.users.id;
-  let { user, description, restaurant, rating } = req.body;
+  let { user, description, rating } = req.body;
 
   try {
     let review = await Review.create({
       user,
       description,
       userId,
-      restaurant,
+      restaurant: req.params.id,
       rating,
     });
 
-    let success = true;
-    res.json({ success });
+    success = true;
+    res.json({ success, review });
   } catch (error) {
     console.error(error.message);
     res.json({ success, msg: "Internal Server Error" });
   }
 });
 
-// Route 6 :- Delete review
-router.delete("/review/:id", userInfo, async (req, res) => {
-  let user_Id = req.user.id;
+// Route 6 :- Get all review
+router.get("/review/get/:id", async (req, res) => {
+  try {
+    let review = await Review.find({ restaurantId: req.params.id });
+    res.json(review);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// Route 7 :- Delete review
+router.delete("/review/delete/:id", usersInfo, async (req, res) => {
+  let user_Id = req.users.id;
 
   try {
     let review = await Review.findById(req.params.id);
