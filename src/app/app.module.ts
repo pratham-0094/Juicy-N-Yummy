@@ -26,6 +26,8 @@ import { ReviewComponent } from './user/review/review.component';
 import { AddComponent } from './admin/add/add.component';
 import { EditadminComponent } from './dialog/editadmin/editadmin.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { ItemsComponent } from './admin/items/items.component';
+import { FeedbackComponent } from './admin/feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { MatRadioModule } from '@angular/material/radio';
     ReviewComponent,
     AddComponent,
     EditadminComponent,
+    ItemsComponent,
+    FeedbackComponent,
   ],
   imports: [
     BrowserModule,

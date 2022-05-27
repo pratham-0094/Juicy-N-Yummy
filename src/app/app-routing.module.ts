@@ -4,6 +4,8 @@ import { AddComponent } from './admin/add/add.component';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { AdminsignupComponent } from './admin/adminsignup/adminsignup.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { FeedbackComponent } from './admin/feedback/feedback.component';
+import { ItemsComponent } from './admin/items/items.component';
 import { HomeComponent } from './user/home/home.component';
 import { LoginComponent } from './user/login/login.component';
 import { MenuComponent } from './user/menu/menu.component';
@@ -47,11 +49,11 @@ const routes: Routes = [
         children: [
           {
             path: 'order',
-            component: OrderComponent,
+            component: ItemsComponent,
           },
           {
             path: 'review',
-            component: ReviewComponent,
+            component: FeedbackComponent,
           },
           {
             path: 'add',
