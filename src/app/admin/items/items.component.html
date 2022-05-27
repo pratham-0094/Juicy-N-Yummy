@@ -1,11 +1,14 @@
 <div class="flex h-screen overflow-hidden">
   <div class="border-taupe-gray h-full border-r-2 h-full">
     <ul class="text-xl font-regular">
+      <li class="ml-14 cursor-pointer w-52 py-4 text-taupe-gray">
+        <button (click)="filter('All')">All</button>
+      </li>
       <li
         *ngFor="let i of category"
         class="ml-14 cursor-pointer w-52 py-4 text-taupe-gray"
       >
-        {{ i }}
+        <button (click)="filter(i)">{{ i }}</button>
       </li>
     </ul>
   </div>

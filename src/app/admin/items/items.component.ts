@@ -37,5 +37,17 @@ export class ItemsComponent implements OnInit {
     });
   }
 
+  filter(name: String) {
+    if (name === 'All') {
+      this.adminServiceAuth.getItems().subscribe((res: items[]) => {
+        this.item = res;
+      });
+    } else {
+      this.adminServiceAuth.getItems().subscribe((res: items[]) => {
+        this.item = res.filter((i) => i.category === name);
+      });
+    }
+  }
+
   ngOnInit(): void {}
 }
