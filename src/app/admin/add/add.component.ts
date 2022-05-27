@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { adminProfile } from 'src/app/model/adminProfile';
 import { newItem } from 'src/app/model/newItem';
 import { AdminAuthService } from 'src/app/service/admin-auth.service';
@@ -13,6 +14,7 @@ import { AdminServiceService } from 'src/app/service/admin-service.service';
 })
 export class AddComponent implements OnInit {
   category!: String[];
+  origin = ['chinese', 'continental', 'italian', 'mexican', 'south indian'];
   addcategory: FormGroup;
   items_add: FormGroup;
   add!: newItem;
@@ -21,7 +23,8 @@ export class AddComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private adminAuth: AdminAuthService,
-    private adminServiceAuth: AdminServiceService
+    private adminServiceAuth: AdminServiceService,
+    private router: Router
   ) {
     this.addcategory = new FormGroup({
       add: new FormControl(''),
@@ -49,14 +52,14 @@ export class AddComponent implements OnInit {
     this.adminServiceAuth.category(newaCategoryArray);
   }
 
-  // @ViewChild('fileInput') fileInput;
+  @ViewChild('fileInput') fileInput: any;
 
   addItem() {
     if (this.items_add.valid) {
       let formData = new FormData();
-      // let fi = this.fileInput.nativeElement;
-      // let fileToUpload = fi.files[0];
-      // formData.append('food', fileToUpload);
+      let fi = this.fileInput.nativeElement;
+      let fileToUpload = fi.files[0];
+      formData.append('food', fileToUpload);
       this.http
         .post('http://localhost:5000/admin/file/upload', formData)
         .subscribe((res: any) => {
@@ -70,7 +73,9 @@ export class AddComponent implements OnInit {
             price: this.items_add.value['price'],
             time: this.items_add.value['time'],
           };
-          this.adminServiceAuth.addItems(this.add).subscribe((res) => {});
+          this.adminServiceAuth.addItems(this.add).subscribe((res) => {
+            this.router.navigateByUrl('/admin/dashboard/order');
+          });
         });
     }
   }
