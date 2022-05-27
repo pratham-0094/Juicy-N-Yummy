@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { items } from 'src/app/model/items';
+import { RestaurantServiceService } from 'src/app/service/restaurant-service.service';
 
 @Component({
   selector: 'app-restaurant',
@@ -6,6 +9,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./restaurant.component.css'],
 })
 export class RestaurantComponent implements OnInit {
+  origin_value: boolean = true;
+  category_value: boolean = true;
+  
+
   origin = [
     {
       origin: 'Chinese',
@@ -57,57 +64,38 @@ export class RestaurantComponent implements OnInit {
     },
   ];
 
-  items = [
-    {
-      id: 1,
-      restaurant: 'Dessert',
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLO9oeBBZ47LGprum7bkD_5gIRx0DrOHSeQ&usqp=CAU',
-      time: 23,
-      price: 32,
-      rating: 3,
-      category: ['pizza', 'fast food'],
-    },
-    {
-      id: 2,
-      restaurant: 'Dessert',
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLO9oeBBZ47LGprum7bkD_5gIRx0DrOHSeQ&usqp=CAU',
-      time: 23,
-      price: 32,
-      rating: 3,
-      category: ['pizza', 'fast food'],
-    },
-    {
-      id: 3,
-      restaurant: 'Dessert',
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLO9oeBBZ47LGprum7bkD_5gIRx0DrOHSeQ&usqp=CAU',
-      time: 23,
-      price: 32,
-      rating: 3,
-      category: ['pizza', 'fast food'],
-    },
-    {
-      id: 4,
-      restaurant: 'Dessert',
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmLO9oeBBZ47LGprum7bkD_5gIRx0DrOHSeQ&usqp=CAU',
-      time: 23,
-      price: 32,
-      rating: 3,
-      category: ['pizza', 'fast food'],
-    },
-  ];
+  item!: items[];
 
-  constructor() {}
+  constructor(
+    private restaurantService: RestaurantServiceService,
+    private router: Router
+  ) {
+    this.restaurantService.getAll();
+    this.intialize();
+  }
 
   ngOnInit(): void {}
 
-  clicked() {
-    console.log('idsdj');
+  intialize() {
+    this.restaurantService.getAll().subscribe((res: any) => {
+      this.item = res;
+    });
   }
-  select_origin(e: string) {
-    console.log(e);
+
+  getOrigin(e: String) {
+    this.restaurantService.getByOrigin(e).subscribe((res: any) => {
+      this.item = res;
+    });
+    this.origin_value = false;
+    this.category_value = true;
   }
+
+  getCategory(e: String) {
+    this.restaurantService.getByCategory(e).subscribe((res: any) => {
+      this.item = res;
+    });
+    this.origin_value = true;
+    this.category_value = false;
+  }
+
 }

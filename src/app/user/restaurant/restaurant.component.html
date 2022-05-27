@@ -1,5 +1,5 @@
 <div class="md:container md:m-auto">
-  <div class="m-10 mx-40">
+  <div *ngIf="origin_value" class="m-10 mx-40">
     <h1 class="text-taupe-gray">Regional Food</h1>
     <div class="flex flex justify-evenly">
       <div
@@ -10,13 +10,13 @@
           class="m-4 border-2 border-black h-40 w-40 rounded-full cursor-pointer"
           src="{{ i.image }}"
           alt="{{ i.origin }}"
-          (click)="select_origin(i.origin)"
+          (click)="getOrigin(i.origin)"
         />
         <p class="text-xl text-flicker-pink font-medium">{{ i.origin }}</p>
       </div>
     </div>
   </div>
-  <div class="m-10 mx-40">
+  <div *ngIf="category_value" class="m-10 mx-40">
     <h1 class="text-taupe-gray">Suggestions for you</h1>
     <div class="flex flex justify-evenly">
       <div
@@ -27,7 +27,7 @@
           class="m-4 border-2 border-black h-36 w-36 rounded-full cursor-pointer"
           src="{{ i.image }}"
           alt="{{ i.origin }}"
-          (click)="select_origin(i.origin)"
+          (click)="getCategory(i.origin)"
         />
       </div>
     </div>
@@ -35,11 +35,11 @@
   <div class="m-10 mx-40">
     <h1 class="text-taupe-gray">Restaurants near you</h1>
     <div class="grid grid-cols-3 gap-10 p-10">
-      <div *ngFor="let i of items" class="flex h-52 border-2 border-black">
+      <div *ngFor="let i of item" class="flex h-52 border-2 border-black">
         <div class="flex relative">
           <img
             class="cursor-pointer mr-10"
-            src="{{ i.image }}"
+            src="http://localhost:5000/admin/file/get/{{ i.img }}"
             alt="{{ i.restaurant }}"
           />
           <div class="gradient_black absolute h-full w-full"></div>
@@ -48,7 +48,7 @@
           class="flex flex-col justify-between bg-black text-white h-full text-right p-3"
         >
           <div class="relative h-16">
-            <a routerLink="/{{i.id}}/order" class="text-3xl leading-5">
+            <a routerLink="/{{ i.restaurantId }}/" class="text-3xl leading-5">
               {{ i.restaurant }} <br />
               <span class="text-xs text-taupe-gray">Pizza , Fast food</span>
             </a>
@@ -67,7 +67,9 @@
             </svg>
           </div>
           <div class="text-base">
-            <span class="m-2 text-flicker-pink text-2xl">&#36; {{ i.price }}</span>
+            <span class="m-2 text-flicker-pink text-2xl"
+              >&#36; {{ i.price }}</span
+            >
             <div
               class="ml-5 bg-taupe-gray rounded-lg flex items-center justify-center"
             >
