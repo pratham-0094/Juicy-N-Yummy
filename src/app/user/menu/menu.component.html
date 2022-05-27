@@ -45,18 +45,38 @@
   </div>
   <div class="w-4/5 flex justify-between mt-5">
     <div class="flex flex-col text-lg">
-      <span class="text-5xl">{{ restaurant.name }}</span>
-      <span class="text-taupe-gray">{{ restaurant.category }}</span>
-      <span class="text-taupe-gray">{{ restaurant.address }}</span>
-      <p>
-        <span class="text-tahiti">{{ restaurant.status }} </span
-        ><i class="mx-1"> &#9679; </i>
-        <span class="text-taupe-gray">Till {{ restaurant.time[1] }} pm</span>
-      </p>
-      <!-- <p>
-        <span class="text-flicker-pink">{{ restaurant.status }} </span><i class="mx-1"> &#9679; </i>
-        <span class="text-taupe-gray">Open at {{ restaurant.time[1] }} am</span>
-      </p> -->
+      <span class="text-5xl">{{ profile.restaurant }}</span>
+      <span class="text-taupe-gray">{{ profile.category }}</span>
+      <span class="text-taupe-gray">{{ profile.address }}</span>
+      <div class="flex">
+        <div>
+          <p
+            *ngIf="
+              now > this.profile.duration[0] && now < this.profile.duration[1];
+              else close_time
+            "
+          >
+            <span class="text-tahiti">Open</span><i class="mx-1"> &#9679; </i>
+            <span class="text-taupe-gray"
+              >Till {{ profile.duration[1] }}:00</span
+            >
+          </p>
+          <ng-template #close_time>
+            <p>
+              <span class="text-flicker-pink">Closed</span
+              ><i class="mx-1"> &#9679; </i>
+              <span class="text-taupe-gray"
+                >Open at {{ profile.duration[0] }}:00</span
+              >
+            </p></ng-template
+          >
+        </div>
+        <div class="mx-5">
+          <p *ngIf="!profile.status">
+            <span class="text-flicker-pink">Currently closed</span>
+          </p>
+        </div>
+      </div>
     </div>
     <div
       class="flex bg-flicker-pink h-14 rounded-lg items-center text-white px-3"
@@ -78,7 +98,7 @@
         <div class="mx-2 text-center font-normal">
           <span>Delivery</span>
           <hr class="m-px" />
-          {{ restaurant.Reviews }}
+          {{ profile.Reviews }}
         </div>
         <svg
           width="18"
@@ -102,18 +122,20 @@
   <div class="w-4/5 flex justify-between flex-col">
     <div class="flex text-xl my-2 text-taupe-gray">
       <a
-        [ngClass]="{ 'text-flicker-pink': router.url === '/:id/order' }"
-        routerLink="/1/order"
+        [ngClass]="{ 'text-flicker-pink': router.url === '/:id/' }"
+        routerLink="/{{id}}"
         class="mx-14 font-regular"
         >Order</a
       >
       <a
         [ngClass]="{ 'text-flicker-pink': router.url === '/:id/review' }"
-        routerLink="/1/review"
+        routerLink="/{{id}}/review"
         class="mx-14 font-regular"
         >Reviews</a
       >
-      <button mat-button (click)="opencart()" class="mx-14 font-regular">Cart ({{ cart.length }})</button>
+      <button mat-button (click)="opencart()" class="mx-14 font-regular">
+        Cart ({{ cart.length }})
+      </button>
     </div>
     <hr class="w-full text-taupe-gray border-b-2 border-taupe-gray" />
     <router-outlet></router-outlet>
