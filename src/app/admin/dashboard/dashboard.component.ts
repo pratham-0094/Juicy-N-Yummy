@@ -48,5 +48,9 @@ export class DashboardComponent implements OnInit {
     this.dialog.open(EditadminComponent);
   }
 
+reviewRedirect(){
+  this.router.navigateByUrl("/admin/dashboard/review")
+}
+
   ngOnInit(): void {}
 }
