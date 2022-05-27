@@ -18,7 +18,6 @@ export class MenuComponent implements OnInit {
   profile!: any;
   now!: Number;
   count!: Number;
-  cart = [{}];
   id!: String;
 
   constructor(

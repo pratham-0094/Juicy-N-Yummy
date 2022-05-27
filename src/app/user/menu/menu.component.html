@@ -122,19 +122,19 @@
   <div class="w-4/5 flex justify-between flex-col">
     <div class="flex text-xl my-2 text-taupe-gray">
       <a
-        [ngClass]="{ 'text-flicker-pink': router.url === '/:id/' }"
-        routerLink="/{{id}}"
+        [ngClass]="{ 'text-flicker-pink': router.url === '/{{id}}' }"
+        routerLink="/{{ id }}"
         class="mx-14 font-regular"
         >Order</a
       >
       <a
-        [ngClass]="{ 'text-flicker-pink': router.url === '/:id/review' }"
-        routerLink="/{{id}}/review"
+        [ngClass]="{ 'text-flicker-pink': router.url === '/{{id}}/review' }"
+        routerLink="/{{ id }}/review"
         class="mx-14 font-regular"
         >Reviews</a
       >
       <button mat-button (click)="opencart()" class="mx-14 font-regular">
-        Cart ({{ cart.length }})
+        Cart
       </button>
     </div>
     <hr class="w-full text-taupe-gray border-b-2 border-taupe-gray" />

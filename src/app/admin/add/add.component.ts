@@ -14,7 +14,7 @@ import { AdminServiceService } from 'src/app/service/admin-service.service';
 })
 export class AddComponent implements OnInit {
   category!: String[];
-  origin = ['chinese', 'continental', 'italian', 'mexican', 'south indian'];
+  origin = ['Chinese', 'Continental', 'Italian', 'Mexican', 'South Indian'];
   addcategory: FormGroup;
   items_add: FormGroup;
   add!: newItem;
