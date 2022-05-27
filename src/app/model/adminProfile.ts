@@ -1,4 +1,5 @@
 export class adminProfile {
+  _id!: String;
   name!: String;
   email!: String;
   phone_no!: String;
