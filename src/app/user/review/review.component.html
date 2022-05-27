@@ -1,12 +1,12 @@
 <div class="flex h-96 justify-between overflow-hidden">
   <div class="ml-14 element overflow-y-scroll h-full ">
-    <div *ngFor="let i of review" class="flex my-10">
-      <img class="w-20 h-20 rounded-full" src="{{ i.image }}" alt="" />
+    <div *ngFor="let i of reviews" class="flex my-10">
+      <img class="w-20 h-20 rounded-full" src="{{ image }}" alt="" />
       <div class="ml-2 w-96 flex justify-between">
         <div class="flex flex-col">
-          <span class="text-3xl">{{ i.name }}</span>
+          <span class="text-3xl">{{ i.user }}</span>
           <span class="text-flicker-pink text-xs font-medium">{{
-            i.desc
+            i.description
           }}</span>
         </div>
         <div class="flex justify-between flex-col">
@@ -30,7 +30,7 @@
               />
             </svg>
           </div>
-          <button class="text-taupe-gray">Remove</button>
+          <button (click)="remove(i._id)" class="text-taupe-gray">Remove</button>
         </div>
       </div>
     </div>
