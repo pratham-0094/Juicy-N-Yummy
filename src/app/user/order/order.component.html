@@ -14,11 +14,8 @@
   </div>
   <div class="ml-10 element h-screen overflow-y-scroll w-full">
     <div *ngFor="let i of item; let k = index" class="flex my-10">
-      <img
-        class="w-28 h-28 rounded-lg"
-        src="http://localhost:5000/admin/file/get/{{ i.img }}"
-        alt=""
-      />
+      <img *ngIf="i.imgBase64" class="w-28 h-28 rounded-lg" [src]="'data:image/jpeg;base64,' + i.imgBase64"
+      alt="Product Image" />
       <div class="ml-2 w-80 flex justify-between">
         <div>
           <span class="text-3xl">{{ i.name }}</span>

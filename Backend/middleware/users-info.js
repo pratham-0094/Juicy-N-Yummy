@@ -1,5 +1,5 @@
 var jwt = require("jsonwebtoken");
-const JWT_SECRET = "Juicy-N-Yummy";
+require('dotenv').config();
 
 const usersInfo = (req, res, next) => {
   // Get the userId from the jwt token and add id to req object
@@ -8,11 +8,11 @@ const usersInfo = (req, res, next) => {
     res.status(401).send({ error: "Please authenticate using a valid token" });
   }
   try {
-    const data = jwt.verify(token, JWT_SECRET);
+    const data = jwt.verify(token, process.env.JWT_SECRET);
     req.users = data.users;
     next();
   } catch (error) {
-    res.status(401).send({ error: "Please authenticate using a valid token" });
+    return res.status(401).send({ error: "Please authenticate using a valid token" });
   }
 };
 

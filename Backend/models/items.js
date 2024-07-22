@@ -19,7 +19,9 @@ const Items = new Schema({
     required: true,
   },
   img: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "Asset",
+    required: true,
   },
   restaurant: {
     type: String,

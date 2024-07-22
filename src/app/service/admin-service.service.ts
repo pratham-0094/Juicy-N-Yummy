@@ -10,10 +10,9 @@ import { review } from '../model/review';
 export class AdminServiceService {
   constructor(private http: HttpClient) {}
 
-  addItems(item: newItem) {
+  addItems(item: FormData) {
     let authtoken = localStorage.getItem('adminAuth') || '';
     const header = new HttpHeaders()
-      .set('content-Type', 'application/json')
       .set('auth-token', authtoken);
     return this.http.post('http://localhost:5000/admin/restaurant/add', item, {
       headers: header,

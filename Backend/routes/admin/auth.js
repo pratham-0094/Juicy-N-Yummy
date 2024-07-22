@@ -6,24 +6,24 @@ const router = express.Router();
 const Admin = require("../../models/admin");
 var adminsInfo = require("../../middleware/admin-info");
 
-const JWT_SECRET = "Juicy-N-Yummy";
+require('dotenv').config();
 
 // Route 1 :- Create admin
 router.post("/signup", async (req, res) => {
-  let success = false;
-  let {
-    name,
-    email,
-    phone_no,
-    password,
-    restaurant,
-    address,
-    distict,
-    state,
-    landmark,
-  } = req.body;
-
   try {
+    let success = false;
+    let {
+      name,
+      email,
+      phone_no,
+      password,
+      restaurant,
+      address,
+      distict,
+      state,
+      landmark,
+    } = req.body;
+
     // Check whether the user with this email exists already
     let admin = await Admin.findOne({ phone_no: phone_no });
     if (admin) {
@@ -55,8 +55,8 @@ router.post("/signup", async (req, res) => {
         id: admin.id,
       },
     };
-    const authtoken = jwt.sign(data, JWT_SECRET);
-    let success = true;
+    const authtoken = jwt.sign(data, process.env.JWT_SECRET);
+    success = true;
     // res.json(user)
     res.json({ success, authtoken });
   } catch (error) {
@@ -67,10 +67,10 @@ router.post("/signup", async (req, res) => {
 
 // Route 2 :- Authenticate a admin
 router.post("/login", async (req, res) => {
-  let success = false;
-  const { phone_no } = req.body;
-
   try {
+    let success = false;
+    const { phone_no } = req.body;
+
     //Check the credential
     let admin = await Admin.findOne({ phone_no });
     if (!admin) {
@@ -87,7 +87,7 @@ router.post("/login", async (req, res) => {
       },
     };
 
-    const authtoken = jwt.sign(data, JWT_SECRET);
+    const authtoken = jwt.sign(data, process.env.JWT_SECRET);
     success = true;
     res.json({ success, authtoken });
   } catch (error) {
@@ -110,16 +110,16 @@ router.get("/getadmin", adminsInfo, async (req, res) => {
 
 // Route 4 :- Edit admin details
 router.put("/edit", adminsInfo, async (req, res) => {
-  let success = false;
-  let { name, email, phone_no, duration, status } = req.body;
-  const admin = {
-    name,
-    email,
-    phone_no,
-    duration,
-    status,
-  };
   try {
+    let success = false;
+    let { name, email, phone_no, duration, status } = req.body;
+    const admin = {
+      name,
+      email,
+      phone_no,
+      duration,
+      status,
+    };
     let adminId = req.admin.id;
     const admins = await Admin.findByIdAndUpdate(
       adminId,
@@ -136,12 +136,12 @@ router.put("/edit", adminsInfo, async (req, res) => {
 
 // Route 5 :- Add category
 router.put("/category", adminsInfo, async (req, res) => {
-  let success = false;
-  let { category } = req.body;
-  const admin = {
-    category,
-  };
   try {
+    let success = false;
+    let { category } = req.body;
+    const admin = {
+      category,
+    };
     let adminId = req.admin.id;
     const admins = await Admin.findByIdAndUpdate(
       adminId,

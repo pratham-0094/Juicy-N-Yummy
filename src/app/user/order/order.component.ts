@@ -17,6 +17,16 @@ export class OrderComponent implements OnInit {
   category!: String[];
   id!: String;
 
+  arrayBufferToBase64(buffer: number[]): string {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+  }
+
   constructor(
     private itemService: ItemServiceService,
     private cartService: CartServiceService,
@@ -29,7 +39,14 @@ export class OrderComponent implements OnInit {
     this.userAuth.getAdminId(this.id).subscribe((data: adminProfile) => {
       this.category = data.category;
     });
-    this.itemService.getItems(this.id).subscribe((res: items[]) => {
+    this.itemService.getItems(this.id).subscribe((res: any[]) => {
+      res.forEach(product => {
+        if (product.img && product.img.data && product.img.data.data) {
+          product.imgBase64 = this.arrayBufferToBase64(product.img.data.data);
+        } else {
+          product.imgBase64 = null;
+        }
+      });
       this.item = res;
     });
   }
@@ -39,16 +56,21 @@ export class OrderComponent implements OnInit {
   }
 
   filter(name: String) {
-    if (name === 'All') {
-      this.itemService.getItems(this.id).subscribe((res: items[]) => {
+    this.itemService.getItems(this.id).subscribe((res: any[]) => {
+      res.forEach(product => {
+        if (product.img && product.img.data && product.img.data.data) {
+          product.imgBase64 = this.arrayBufferToBase64(product.img.data.data);
+        } else {
+          product.imgBase64 = null;
+        }
+      });
+      if (name === 'All') {
         this.item = res;
-      });
-    } else {
-      this.itemService.getItems(this.id).subscribe((res) => {
-        this.item = res.filter((res) => res.category === name);
-      });
-    }
+      } else {
+        this.item = res.filter((res) => res.category === name);;
+      }
+    })
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

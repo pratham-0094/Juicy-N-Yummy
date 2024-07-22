@@ -9,17 +9,17 @@ export class RestaurantServiceService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<items>('http://localhost:5000/restaurant/get');
+    return this.http.get<items[]>('http://localhost:5000/restaurant/get');
   }
 
   getByOrigin(origin: String) {
-    return this.http.get<items>(
+    return this.http.get<items[]>(
       'http://localhost:5000/restaurant/region/' + origin
     );
   }
   
   getByCategory(category: String) {
-    return this.http.get<items>(
+    return this.http.get<items[]>(
       'http://localhost:5000/restaurant/category/' + category
     );
   }

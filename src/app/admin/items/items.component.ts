@@ -23,7 +23,14 @@ export class ItemsComponent implements OnInit {
     this.adminAuth.getAdmin().subscribe((data: adminProfile) => {
       this.category = data.category;
     });
-    this.adminServiceAuth.getItems().subscribe((res: items[]) => {
+    this.adminServiceAuth.getItems().subscribe((res: any[]) => {
+      res.forEach(product => {
+        if (product.img && product.img.data && product.img.data.data) {
+          product.imgBase64 = this.arrayBufferToBase64(product.img.data.data);
+        } else {
+          product.imgBase64 = null;
+        }
+      });
       this.item = res;
     });
   }
@@ -37,17 +44,33 @@ export class ItemsComponent implements OnInit {
     });
   }
 
-  filter(name: String) {
-    if (name === 'All') {
-      this.adminServiceAuth.getItems().subscribe((res: items[]) => {
-        this.item = res;
-      });
-    } else {
-      this.adminServiceAuth.getItems().subscribe((res: items[]) => {
-        this.item = res.filter((i) => i.category === name);
-      });
+  arrayBufferToBase64(buffer: number[]): string {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
     }
+    return window.btoa(binary);
   }
 
-  ngOnInit(): void {}
+  filter(name: String) {
+    this.adminServiceAuth.getItems().subscribe((res: any[]) => {
+      res.forEach(product => {
+        if (product.img && product.img.data && product.img.data.data) {
+          product.imgBase64 = this.arrayBufferToBase64(product.img.data.data);
+        } else {
+          product.imgBase64 = null;
+        }
+      });
+
+      if (name === 'All') {
+        this.item = res;
+      } else {
+        this.item = res.filter((i) => i.category === name);
+      }
+    });
+  }
+
+  ngOnInit(): void { }
 }

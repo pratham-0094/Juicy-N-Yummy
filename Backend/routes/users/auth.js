@@ -7,14 +7,14 @@ const Users = require("../../models/users");
 const Admin = require("../../models/admin");
 var usersInfo = require("../../middleware/users-info");
 
-const JWT_SECRET = "Juicy-N-Yummy";
+require('dotenv').config();
 
 // Route 1 :- Create user
 router.post("/signup", async (req, res) => {
-  let success = false;
-  let { name, email, phone_no, password } = req.body;
-
   try {
+    let success = false;
+    let { name, email, phone_no, password } = req.body;
+
     // Check whether the user with this email exists already
     let users = await Users.findOne({ phone_no: phone_no });
     if (users) {
@@ -41,8 +41,8 @@ router.post("/signup", async (req, res) => {
         id: users.id,
       },
     };
-    const authtoken = jwt.sign(data, JWT_SECRET);
-    let success = true;
+    const authtoken = jwt.sign(data, process.env.JWT_SECRET);
+    success = true;
     // res.json(user)
     res.json({ success, authtoken });
   } catch (error) {
@@ -53,10 +53,10 @@ router.post("/signup", async (req, res) => {
 
 // Route 2 :- Authenticate a user
 router.post("/login", async (req, res) => {
-  let success = false;
-  const { phone_no } = req.body;
-
   try {
+    let success = false;
+    const { phone_no } = req.body;
+
     //Check the credential
     let users = await Users.findOne({ phone_no });
     if (!users) {
@@ -73,7 +73,7 @@ router.post("/login", async (req, res) => {
       },
     };
 
-    const authtoken = jwt.sign(data, JWT_SECRET);
+    const authtoken = jwt.sign(data, process.env.JWT_SECRET);
     success = true;
     res.json({ success, authtoken });
   } catch (error) {
@@ -96,14 +96,14 @@ router.get("/getuser", usersInfo, async (req, res) => {
 
 // Route 4 :- Edit user details
 router.put("/edit", usersInfo, async (req, res) => {
-  let success = false;
-  let { name, email, phone_no } = req.body;
-  const user = {
-    name,
-    email,
-    phone_no,
-  };
   try {
+    let success = false;
+    let { name, email, phone_no } = req.body;
+    const user = {
+      name,
+      email,
+      phone_no,
+    };
     let userId = req.users.id;
     const users = await Users.findByIdAndUpdate(
       userId,

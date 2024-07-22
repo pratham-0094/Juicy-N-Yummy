@@ -9,7 +9,7 @@ const Review = require("../../models/review");
 // Route 1 :- Get all item
 router.get("/get", async (req, res) => {
   try {
-    let items = await Items.find({});
+    let items = await Items.find({}).populate('img');
 
     if (!items) {
       return res.status(404).send("No Item Found");
@@ -26,7 +26,7 @@ router.get("/get", async (req, res) => {
 router.get("/get/:id", async (req, res) => {
   try {
     let restaurantId = mongoose.Types.ObjectId(req.params.id);
-    let items = await Items.find({ restaurantId: restaurantId });
+    let items = await Items.find({ restaurantId: restaurantId }).populate('img');
     res.json(items);
   } catch (error) {
     console.error(error.message);
@@ -37,7 +37,7 @@ router.get("/get/:id", async (req, res) => {
 // Route 3 :- Get item by region
 router.get("/region/:name", async (req, res) => {
   try {
-    let items = await Items.find({ origin: req.params.name });
+    let items = await Items.find({ origin: req.params.name }).populate('img');
     res.json(items);
   } catch (error) {
     console.error(error.message);
@@ -48,7 +48,7 @@ router.get("/region/:name", async (req, res) => {
 // Route 4 :- Get item by category
 router.get("/category/:name", async (req, res) => {
   try {
-    let items = await Items.find({ category: req.params.name });
+    let items = await Items.find({ category: req.params.name }).populate('img');
     res.json(items);
   } catch (error) {
     console.error(error.message);
@@ -58,11 +58,11 @@ router.get("/category/:name", async (req, res) => {
 
 // Route 5 :- Create review
 router.post("/review/:id", usersInfo, async (req, res) => {
-  let success = false;
-  let userId = req.users.id;
-  let { user, description, rating } = req.body;
-
   try {
+    let success = false;
+    let userId = req.users.id;
+    let { user, description, rating } = req.body;
+
     let review = await Review.create({
       user,
       description,
@@ -92,9 +92,9 @@ router.get("/review/get/:id", async (req, res) => {
 
 // Route 7 :- Delete review
 router.delete("/review/delete/:id", usersInfo, async (req, res) => {
-  let user_Id = req.users.id;
-
   try {
+    let user_Id = req.users.id;
+
     let review = await Review.findById(req.params.id);
 
     if (!review) {

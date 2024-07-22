@@ -6,6 +6,7 @@ export class cart {
   rating!: Number;
   quantity!: any;
   img!: String;
+  imgBase64?: string; 
   restaurant!: String;
   restaurantId!: String;
   price!: Number;

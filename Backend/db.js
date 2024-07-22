@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const mongoURI = "mongodb+srv://root:adminroot@cluster.djali.mongodb.net/Juicy-N-Yummy";
+require('dotenv').config();
+const mongoURI = process.env.MONGO_URI;
 
 const connectToMongo = () => {
   mongoose.connect(mongoURI, {

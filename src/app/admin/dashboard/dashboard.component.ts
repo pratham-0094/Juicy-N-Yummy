@@ -31,15 +31,15 @@ export class DashboardComponent implements OnInit {
     this.adminAuth.getAdmin().subscribe((data: adminProfile) => {
       this.adminServiceAuth.getReview(data._id).subscribe((res: review[]) => {
         this.count = res.length;
-        this.profile = {
-          restaurant: data.restaurant,
-          category: data.category,
-          address: data.address,
-          duration: data.duration,
-          status: data.status,
-          Reviews: this.count,
-        };
       });
+      this.profile = {
+        restaurant: data.restaurant,
+        category: data.category,
+        address: data.address,
+        duration: data.duration,
+        status: data.status,
+        Reviews: this.count,
+      };
     });
     this.now = new Date().getHours();
   }
@@ -48,9 +48,9 @@ export class DashboardComponent implements OnInit {
     this.dialog.open(EditadminComponent);
   }
 
-reviewRedirect(){
-  this.router.navigateByUrl("/admin/dashboard/review")
-}
+  reviewRedirect() {
+    this.router.navigateByUrl("/admin/dashboard/review")
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

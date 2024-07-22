@@ -4,7 +4,8 @@ export class items {
   category!: String;
   origin!: String;
   rating!: Number;
-  img!: String;
+  img!: any;
+  imgBase64?: string; 
   restaurant!: String;
   restaurantId!: String;
   price!: Number;
