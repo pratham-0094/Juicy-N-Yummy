@@ -6,10 +6,11 @@ import { cart } from '../model/cart';
 })
 export class CartServiceService {
   item: cart[] = [];
+  amount: number = 0;
 
   add(addItem: any) {
     let found = false;
-    let k!: any;
+    let k = 0;
     if (this.item.length > 0) {
       this.item.forEach((i, index) => {
         if (i._id === addItem._id) {
@@ -19,30 +20,32 @@ export class CartServiceService {
       });
       if (found) {
         this.item[k].quantity += 1;
-      } else {
-        addItem.quantity = 1;
-        this.item.push(addItem);
+        this.amount += addItem.price;
+        return
       }
-    } else {
-      addItem.quantity = 1;
-      this.item.push(addItem);
+    }
+    addItem.quantity = 1;
+    this.item.push(addItem);
+    this.amount += addItem.price;
+  }
+
+  remove(index: number) {
+    this.amount = this.amount - (this.item[index].quantity * this.item[index].price); // Update the amount
+    this.item.splice(index, 1);
+  }
+
+  increment(index: number) {
+    if (this.item[index].quantity < 10) {
+      this.item[index].quantity += 1;
+      this.amount = this.amount + this.item[index].price; // Update the amount
     }
   }
 
-  remove(i: any) {
-    this.item.splice(i, 1);
-  }
-
-  increment(i: any) {
-    if (this.item[i].quantity < 10) {
-      this.item[i].quantity += 1;
-    }
-  }
-
-  decrement(i: any) {
-    this.item[i].quantity -= 1;
-    if (this.item[i].quantity === 0) {
-      this.item.splice(i, 1);
+  decrement(index: number) {
+    this.amount = this.amount - this.item[index].price; // Update the amount
+    this.item[index].quantity -= 1;
+    if (this.item[index].quantity === 0) {
+      this.item.splice(index, 1);
     }
   }
 
@@ -50,5 +53,10 @@ export class CartServiceService {
     return this.item;
   }
 
-  constructor() {}
+  placeOrder() {
+    this.item = []
+    return this.item;
+  }
+
+  constructor() { }
 }

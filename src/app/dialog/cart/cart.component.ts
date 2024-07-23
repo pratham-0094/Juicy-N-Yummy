@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { cart } from 'src/app/model/cart';
-import { items } from 'src/app/model/items';
 import { CartServiceService } from 'src/app/service/cart-service.service';
 
 @Component({
@@ -10,9 +9,13 @@ import { CartServiceService } from 'src/app/service/cart-service.service';
 })
 export class CartComponent implements OnInit {
   item!: cart[];
+  totalAmount = 0;
+  discount = 0;
 
   constructor(private cartService: CartServiceService) {
     this.item = this.cartService.get();
+    this.totalAmount = this.cartService.amount
+    this.discount = this.totalAmount * 0.1
   }
 
   arrayBufferToBase64(buffer: number[]): string {
@@ -25,19 +28,32 @@ export class CartComponent implements OnInit {
     return window.btoa(binary);
   }
 
-  increase(i: any) {
-    this.cartService.increment(i);
+  increase(index: number) {
+    this.cartService.increment(index);
     this.item = this.cartService.get();
+    this.totalAmount = this.cartService.amount;
+    this.discount = this.totalAmount * 0.1;
   }
 
-  decrease(i: any) {
-    this.cartService.decrement(i);
+  decrease(index: number) {
+    this.cartService.decrement(index);
     this.item = this.cartService.get();
+    this.totalAmount = this.cartService.amount;
+    this.discount = this.totalAmount * 0.1;
   }
 
-  delete(i: any) {
-    this.cartService.remove(i);
+  delete(index: number) {
+    this.cartService.remove(index);
+    this.item = this.cartService.get();
+    this.totalAmount = this.cartService.amount;
+    this.discount = this.totalAmount * 0.1;
+  }
+  
+  placeOrder() {
+    this.item = this.cartService.placeOrder();
+    this.totalAmount = this.cartService.amount;
+    this.discount = this.totalAmount * 0.1;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

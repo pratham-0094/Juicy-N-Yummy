@@ -43,7 +43,7 @@
       />
     </svg>
   </div>
-  <div class="w-4/5 flex justify-between mt-5">
+  <div *ngIf="profile" class="w-4/5 flex justify-between mt-5">
     <div class="flex flex-col text-lg">
       <span class="text-5xl">{{ profile.restaurant }}</span>
       <span class="text-taupe-gray">{{ profile.category }}</span>
@@ -79,7 +79,8 @@
       </div>
     </div>
     <div
-      class="flex bg-flicker-pink h-14 rounded-lg items-center text-white px-3"
+    (click)="reviewRedirect()"
+      class="flex bg-flicker-pink cursor-pointer h-14 rounded-lg items-center text-white px-3"
     >
       <span class="text-lg mr-3">Reviews</span>
       <div class="flex items-center border-l-2 border-white h-full pl-3">

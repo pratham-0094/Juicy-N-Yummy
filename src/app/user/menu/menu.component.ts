@@ -46,10 +46,10 @@ export class MenuComponent implements OnInit {
     this.now = new Date().getHours();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   reviewRedirect() {
-    this.router.navigateByUrl('/admin/dashboard/review');
+    this.router.navigateByUrl(`/${this.id}/review`);
   }
 
   opencart() {

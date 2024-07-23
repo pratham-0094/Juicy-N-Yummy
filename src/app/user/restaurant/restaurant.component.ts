@@ -9,10 +9,7 @@ import { RestaurantServiceService } from 'src/app/service/restaurant-service.ser
   styleUrls: ['./restaurant.component.css'],
 })
 export class RestaurantComponent implements OnInit {
-  origin_value: boolean = true;
-  category_value: boolean = true;
-
-
+  lastFilter: String = "";
   origin = [
     {
       origin: 'Chinese',
@@ -99,34 +96,60 @@ export class RestaurantComponent implements OnInit {
   }
 
   getOrigin(e: String) {
-    this.restaurantService.getByOrigin(e).subscribe((res: any[]) => {
-      res.forEach(product => {
-        if (product.img && product.img.data && product.img.data.data) {
-          product.imgBase64 = this.arrayBufferToBase64(product.img.data.data);
-        } else {
-          product.imgBase64 = null;
-        }
+    if (e == this.lastFilter) {
+      this.restaurantService.getAll().subscribe((res: any[]) => {
+        res.forEach(product => {
+          if (product.img && product.img.data && product.img.data.data) {
+            product.imgBase64 = this.arrayBufferToBase64(product.img.data.data);
+          } else {
+            product.imgBase64 = null;
+          }
+        });
+        this.item = res;
       });
-      this.item = res;
-      console.log(res);
-    });
-    this.origin_value = false;
-    this.category_value = true;
+      this.lastFilter = "";
+    } else {
+      this.restaurantService.getByOrigin(e).subscribe((res: any[]) => {
+        res.forEach(product => {
+          if (product.img && product.img.data && product.img.data.data) {
+            product.imgBase64 = this.arrayBufferToBase64(product.img.data.data);
+          } else {
+            product.imgBase64 = null;
+          }
+        });
+        this.item = res;
+        console.log(res);
+      });
+      this.lastFilter = e;
+    }
   }
 
   getCategory(e: String) {
-    this.restaurantService.getByCategory(e).subscribe((res: any[]) => {
-      res.forEach(product => {
-        if (product.img && product.img.data && product.img.data.data) {
-          product.imgBase64 = this.arrayBufferToBase64(product.img.data.data);
-        } else {
-          product.imgBase64 = null;
-        }
+    if (e == this.lastFilter) {
+      this.restaurantService.getAll().subscribe((res: any[]) => {
+        res.forEach(product => {
+          if (product.img && product.img.data && product.img.data.data) {
+            product.imgBase64 = this.arrayBufferToBase64(product.img.data.data);
+          } else {
+            product.imgBase64 = null;
+          }
+        });
+        this.item = res;
       });
-      this.item = res;
-    });
-    this.origin_value = true;
-    this.category_value = false;
+      this.lastFilter = "";
+    } else {
+      this.restaurantService.getByCategory(e).subscribe((res: any[]) => {
+        res.forEach(product => {
+          if (product.img && product.img.data && product.img.data.data) {
+            product.imgBase64 = this.arrayBufferToBase64(product.img.data.data);
+          } else {
+            product.imgBase64 = null;
+          }
+        });
+        this.item = res;
+      });
+      this.lastFilter = e;
+    }
   }
 
 }

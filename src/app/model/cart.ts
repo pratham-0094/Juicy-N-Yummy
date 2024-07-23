@@ -9,6 +9,6 @@ export class cart {
   imgBase64?: string; 
   restaurant!: String;
   restaurantId!: String;
-  price!: Number;
+  price!: any;
   time!: Number;
 }
