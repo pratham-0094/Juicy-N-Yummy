@@ -12,13 +12,13 @@
       <img src="../assets/images//juicy-n-yummy.png" alt="juicy-n-yummy" width="40px" height="40px"
         class="rounded-full" />
       <a routerLink="/" class="mx-5">Juicy N' Yummy</a>
-      <div class="flex items-center text-black bg-white/[.5] h-full rounded-full">
+      <div class="flex items-center bg-[#f9f858]/[.5] h-full rounded-full">
         <label for="search_bar">
           <img src="../assets/images/search.svg" width="20px" alt="search" class="mx-3" /></label>
         <input [ngClass]="{ 
-          'text-flicker-pink placeholder:text-taupe-gray': !isScrolled,
-          'text-black placeholder:white': isScrolled
-          }" class="outline-none w-80 bg-transparent" id="search_bar" type="text" placeholder="www.juicynyummy.com" />
+          'placeholder:text-black/[.5]': !isScrolled,
+          'placeholder:text-slate-300': isScrolled
+          }" class="text-black outline-none w-80 mr-3 bg-transparent" id="search_bar" type="text" placeholder="www.juicynyummy.com" />
       </div>
     </div>
     <div class="flex m-5 items-center">

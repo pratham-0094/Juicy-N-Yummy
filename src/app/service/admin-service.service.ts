@@ -8,67 +8,49 @@ import { review } from '../model/review';
   providedIn: 'root',
 })
 export class AdminServiceService {
+  private baseUrl = 'https://juicynyummy.netlify.app/.netlify/functions/api/admin';
+
   constructor(private http: HttpClient) {}
 
-  addItems(item: FormData) {
-    let authtoken = localStorage.getItem('adminAuth') || '';
-    const header = new HttpHeaders()
+  private getHeaders() {
+    const authtoken = localStorage.getItem('adminAuth') || '';
+    return new HttpHeaders()
+      .set('content-Type', 'application/json')
       .set('auth-token', authtoken);
-    return this.http.post('http://localhost:5000/admin/restaurant/add', item, {
-      headers: header,
-    });
+  }
+
+  addItems(item: FormData) {
+    const headers = this.getHeaders().delete('content-Type'); 
+    return this.http.post(`${this.baseUrl}/restaurant/add`, item, { headers });
   }
 
   getItems() {
-    let authtoken = localStorage.getItem('adminAuth') || '';
-    const header = new HttpHeaders()
-      .set('content-Type', 'application/json')
-      .set('auth-token', authtoken);
-    return this.http.get<items[]>(
-      'http://localhost:5000/admin/restaurant/get',
-      { headers: header }
-    );
+    return this.http.get<items[]>(`${this.baseUrl}/restaurant/get`, {
+      headers: this.getHeaders(),
+    });
   }
 
   removeItems(id: String) {
-    let authtoken = localStorage.getItem('adminAuth') || '';
-    const header = new HttpHeaders()
-      .set('content-Type', 'application/json')
-      .set('auth-token', authtoken);
-    return this.http.delete(
-      'http://localhost:5000/admin/restaurant/delete/' + id,
-      { headers: header }
-    );
+    return this.http.delete(`${this.baseUrl}/restaurant/delete/${id}`, {
+      headers: this.getHeaders(),
+    });
   }
 
   getReview(id: String) {
-    return this.http.get<review[]>(
-      'http://localhost:5000/admin/restaurant/review/' + id
-    );
+    return this.http.get<review[]>(`${this.baseUrl}/restaurant/review/${id}`);
   }
 
   removeReview(id: String) {
-    let authtoken = localStorage.getItem('adminAuth') || '';
-    const header = new HttpHeaders()
-      .set('content-Type', 'application/json')
-      .set('auth-token', authtoken);
-    return this.http.delete(
-      'http://localhost:5000/admin/restaurant/review/delete/' + id,
-      { headers: header }
-    );
+    return this.http.delete(`${this.baseUrl}/restaurant/review/delete/${id}`, {
+      headers: this.getHeaders(),
+    });
   }
 
   category(category: any) {
-    let authtoken = localStorage.getItem('adminAuth') || '';
-    const header = new HttpHeaders()
-      .set('content-Type', 'application/json')
-      .set('auth-token', authtoken);
-    this.http
-      .put('http://localhost:5000/admin/auth/category', category, {
-        headers: header,
-      })
-      .subscribe((res) => {
-        console.log(res);
-      });
+    return this.http.put(`${this.baseUrl}/auth/category`, category, {
+      headers: this.getHeaders(),
+    }).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

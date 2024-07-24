@@ -10,69 +10,62 @@ import { userSignup } from '../model/userSignup';
   providedIn: 'root',
 })
 export class UserAuthService {
+  private baseUrl = 'https://juicynyummy.netlify.app/.netlify/functions/api/auth';
+
   constructor(private http: HttpClient, private router: Router) {}
 
+  private getHeaders() {
+    const authtoken = localStorage.getItem('userAuth') || '';
+    return new HttpHeaders()
+      .set('content-Type', 'application/json')
+      .set('auth-token', authtoken);
+  }
+
   signup(credential: userSignup) {
-    const header = new HttpHeaders().set('content-Type', 'application/json');
-    this.http
-      .post('http://localhost:5000/auth/signup', credential, {
-        headers: header,
-      })
-      .subscribe((Response: any) => {
-        console.log(Response);
-        if (Response.success) {
-          localStorage.setItem('userAuth', Response.authtoken);
-          console.log(localStorage.getItem('userAuth'));
-          this.router.navigateByUrl('/restaurant');
-        } else {
-          alert('invalid credential');
-        }
-      });
+    return this.http.post(`${this.baseUrl}/signup`, credential, {
+      headers: this.getHeaders(),
+    }).subscribe((response: any) => {
+      console.log(response);
+      if (response.success) {
+        localStorage.setItem('userAuth', response.authtoken);
+        console.log(localStorage.getItem('userAuth'));
+        this.router.navigateByUrl('/restaurant');
+      } else {
+        alert('Invalid credentials');
+      }
+    });
   }
 
   login(credential: userLogin) {
-    const header = new HttpHeaders().set('content-Type', 'application/json');
-    this.http
-      .post('http://localhost:5000/auth/login', credential, {
-        headers: header,
-      })
-      .subscribe((Response: any) => {
-        console.log(Response);
-        if (Response.success) {
-          localStorage.setItem('userAuth', Response.authtoken);
-          console.log(localStorage.getItem('userAuth'));
-          this.router.navigateByUrl('/restaurant');
-        } else {
-          alert('invalid credential');
-        }
-      });
+    return this.http.post(`${this.baseUrl}/login`, credential, {
+      headers: this.getHeaders(),
+    }).subscribe((response: any) => {
+      console.log(response);
+      if (response.success) {
+        localStorage.setItem('userAuth', response.authtoken);
+        console.log(localStorage.getItem('userAuth'));
+        this.router.navigateByUrl('/restaurant');
+      } else {
+        alert('Invalid credentials');
+      }
+    });
   }
 
   getUser() {
-    let authtoken = localStorage.getItem('userAuth') || '';
-    const header = new HttpHeaders().set('auth-token', authtoken);
-    return this.http.get<userProfile>('http://localhost:5000/auth/getuser', {
-      headers: header,
+    return this.http.get<userProfile>(`${this.baseUrl}/getuser`, {
+      headers: this.getHeaders(),
     });
   }
 
   getAdminId(id: String) {
-    return this.http.get<adminProfile>(
-      'http://localhost:5000/auth/getadmin/' + id
-    );
+    return this.http.get<adminProfile>(`${this.baseUrl}/getadmin/${id}`);
   }
 
   editUserProfile(credential: userProfile) {
-    let authtoken = localStorage.getItem('userAuth') || '';
-    const header = new HttpHeaders()
-      .set('content-Type', 'application/json')
-      .set('auth-token', authtoken);
-    this.http
-      .put('http://localhost:5000/auth/edit', credential, {
-        headers: header,
-      })
-      .subscribe((res) => {
-        console.log(res);
-      });
+    return this.http.put(`${this.baseUrl}/edit`, credential, {
+      headers: this.getHeaders(),
+    }).subscribe((res) => {
+      console.log(res);
+    });
   }
 }

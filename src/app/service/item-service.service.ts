@@ -7,40 +7,37 @@ import { review } from '../model/review';
   providedIn: 'root',
 })
 export class ItemServiceService {
+  private baseUrl = 'https://juicynyummy.netlify.app/.netlify/functions/api/restaurant'; 
+
   constructor(private http: HttpClient) {}
 
+  private getHeaders() {
+    let authtoken = localStorage.getItem('userAuth') || '';
+    return new HttpHeaders()
+      .set('content-Type', 'application/json')
+      .set('auth-token', authtoken);
+  }
+
   getItems(id: String) {
-    return this.http.get<items[]>('http://localhost:5000/restaurant/get/' + id);
+    return this.http.get<items[]>(`${this.baseUrl}/get/${id}`);
   }
 
   getReview(id: String) {
-    return this.http.get<review[]>(
-      'http://localhost:5000/restaurant/review/get/' + id
-    );
+    return this.http.get<review[]>(`${this.baseUrl}/review/get/${id}`);
   }
 
   addReview(reviews: any, id: String) {
-    let authtoken = localStorage.getItem('userAuth') || '';
-    const header = new HttpHeaders()
-      .set('content-Type', 'application/json')
-      .set('auth-token', authtoken);
     return this.http.post(
-      'http://localhost:5000/restaurant/review/' + id,
+      `${this.baseUrl}/review/${id}`,
       reviews,
-      {
-        headers: header,
-      }
+      { headers: this.getHeaders() }
     );
   }
 
   removeReview(id: String) {
-    let authtoken = localStorage.getItem('userAuth') || '';
-    const header = new HttpHeaders()
-      .set('content-Type', 'application/json')
-      .set('auth-token', authtoken);
     return this.http.delete(
-      'http://localhost:5000/restaurant/review/delete/' + id,
-      { headers: header }
+      `${this.baseUrl}/review/delete/${id}`,
+      { headers: this.getHeaders() }
     );
   }
 }

@@ -9,9 +9,15 @@
 # Node
 /node_modules
 /Backend/node_modules
-/Backend/.env
 npm-debug.log
 yarn-error.log
+
+# Netlify
+.netlify
+Backend/.netlify
+
+# Env
+/Backend/.env
 
 # IDEs and editors
 .idea/
@@ -42,3 +48,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Local Netlify folder
+.netlify

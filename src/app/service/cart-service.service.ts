@@ -19,8 +19,10 @@ export class CartServiceService {
         }
       });
       if (found) {
-        this.item[k].quantity += 1;
-        this.amount += addItem.price;
+        if (this.item[k].quantity < 9) {
+          this.item[k].quantity += 1;
+          this.amount = addItem.price;
+        }
         return
       }
     }
@@ -35,7 +37,7 @@ export class CartServiceService {
   }
 
   increment(index: number) {
-    if (this.item[index].quantity < 10) {
+    if (this.item[index].quantity < 9) {
       this.item[index].quantity += 1;
       this.amount = this.amount + this.item[index].price; // Update the amount
     }

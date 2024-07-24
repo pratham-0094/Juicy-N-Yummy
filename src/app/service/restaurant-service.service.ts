@@ -6,21 +6,24 @@ import { items } from '../model/items';
   providedIn: 'root',
 })
 export class RestaurantServiceService {
+  private baseUrl = 'https://juicynyummy.netlify.app/.netlify/functions/api/restaurant'; 
   constructor(private http: HttpClient) {}
 
-  getAll() {
-    return this.http.get<items[]>('http://localhost:5000/restaurant/get');
+  getAll(page: any) {
+    return this.http.get<items[]>(`${this.baseUrl}/get`, {
+      params: { page }
+    });
   }
 
-  getByOrigin(origin: String) {
-    return this.http.get<items[]>(
-      'http://localhost:5000/restaurant/region/' + origin
-    );
+  getByOrigin(origin: String, page: any) {
+    return this.http.get<items[]>(`${this.baseUrl}/region/${origin}`, {
+      params: { page }
+    });
   }
-  
-  getByCategory(category: String) {
-    return this.http.get<items[]>(
-      'http://localhost:5000/restaurant/category/' + category
-    );
-  }
+
+  // getByCategory(category: String) {
+  //   return this.http.get<items[]>(
+  //     `${this.baseUrl}/category/` + category
+  //   );
+  // }
 }

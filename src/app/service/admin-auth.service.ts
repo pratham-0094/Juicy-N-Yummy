@@ -9,12 +9,14 @@ import { adminProfile } from '../model/adminProfile';
   providedIn: 'root',
 })
 export class AdminAuthService {
+  private baseURL: string = 'https://juicynyummy.netlify.app/.netlify/functions/api/admin/auth';
+
   constructor(private http: HttpClient, private router: Router) {}
 
   signup(credential: adminAuthSignup) {
-    const header = new HttpHeaders().set('content-Type', 'application/json');
+    const header = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .post('http://localhost:5000/admin/auth/signup', credential, {
+      .post(`${this.baseURL}/signup`, credential, {
         headers: header,
       })
       .subscribe((Response: any) => {
@@ -24,15 +26,15 @@ export class AdminAuthService {
           console.log(localStorage.getItem('adminAuth'));
           this.router.navigateByUrl('/admin/dashboard');
         } else {
-          alert('invalid credential');
+          alert('Invalid credentials');
         }
       });
   }
 
   login(credential: adminAuthLogin) {
-    const header = new HttpHeaders().set('content-Type', 'application/json');
+    const header = new HttpHeaders().set('Content-Type', 'application/json');
     this.http
-      .post('http://localhost:5000/admin/auth/login', credential, {
+      .post(`${this.baseURL}/login`, credential, {
         headers: header,
       })
       .subscribe((Response: any) => {
@@ -42,7 +44,7 @@ export class AdminAuthService {
           console.log(localStorage.getItem('adminAuth'));
           this.router.navigateByUrl('/admin/dashboard');
         } else {
-          alert('invalid credential');
+          alert('Invalid credentials');
         }
       });
   }
@@ -50,21 +52,18 @@ export class AdminAuthService {
   getAdmin() {
     let authtoken = localStorage.getItem('adminAuth') || '';
     const header = new HttpHeaders().set('auth-token', authtoken);
-    return this.http.get<adminProfile>(
-      'http://localhost:5000/admin/auth/getadmin',
-      {
-        headers: header,
-      }
-    );
+    return this.http.get<adminProfile>(`${this.baseURL}/getadmin`, {
+      headers: header,
+    });
   }
 
   editAdminProfile(credential: any) {
     let authtoken = localStorage.getItem('adminAuth') || '';
     const header = new HttpHeaders()
-      .set('content-Type', 'application/json')
+      .set('Content-Type', 'application/json')
       .set('auth-token', authtoken);
     this.http
-      .put('http://localhost:5000/admin/auth/edit', credential, {
+      .put(`${this.baseURL}/edit`, credential, {
         headers: header,
       })
       .subscribe((res) => {
@@ -75,10 +74,10 @@ export class AdminAuthService {
   addCategory(category: String) {
     let authtoken = localStorage.getItem('adminAuth') || '';
     const header = new HttpHeaders()
-      .set('content-Type', 'application/json')
+      .set('Content-Type', 'application/json')
       .set('auth-token', authtoken);
     this.http
-      .put('http://localhost:5000/admin/auth/edit', category, {
+      .put(`${this.baseURL}/edit`, category, {
         headers: header,
       })
       .subscribe((res) => {

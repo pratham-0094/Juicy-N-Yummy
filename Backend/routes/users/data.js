@@ -9,8 +9,15 @@ const Review = require("../../models/review");
 // Route 1 :- Get all item
 router.get("/get", async (req, res) => {
   try {
-    let items = await Items.find({}).populate('img');
+    ITEMS_PER_PAGE = 10;
+    const page = parseInt(req.query.page) || 1;
 
+    const skip = (page - 1) * ITEMS_PER_PAGE;
+
+    const items = await Items.find({})
+      .populate('img')
+      .skip(skip)
+      .limit(ITEMS_PER_PAGE);
     if (!items) {
       return res.status(404).send("No Item Found");
     }
@@ -37,8 +44,19 @@ router.get("/get/:id", async (req, res) => {
 // Route 3 :- Get item by region
 router.get("/region/:name", async (req, res) => {
   try {
-    let items = await Items.find({ origin: req.params.name }).populate('img');
+    ITEMS_PER_PAGE = 1;
+    const page = parseInt(req.query.page) || 1;
+    const origin = req.params.name;
+
+    const skip = (page - 1) * ITEMS_PER_PAGE;
+
+    const items = await Items.find({ origin })
+      .populate('img')
+      .skip(skip)
+      .limit(ITEMS_PER_PAGE);
+
     res.json(items);
+
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
@@ -46,15 +64,15 @@ router.get("/region/:name", async (req, res) => {
 });
 
 // Route 4 :- Get item by category
-router.get("/category/:name", async (req, res) => {
-  try {
-    let items = await Items.find({ category: req.params.name }).populate('img');
-    res.json(items);
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Internal Server Error");
-  }
-});
+// router.get("/category/:name", async (req, res) => {
+//   try {
+//     let items = await Items.find({ category: req.params.name }).populate('img');
+//     res.json(items);
+//   } catch (error) {
+//     console.error(error.message);
+//     res.status(500).send("Internal Server Error");
+//   }
+// });
 
 // Route 5 :- Create review
 router.post("/review/:id", usersInfo, async (req, res) => {
