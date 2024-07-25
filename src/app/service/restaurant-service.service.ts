@@ -6,7 +6,7 @@ import { items } from '../model/items';
   providedIn: 'root',
 })
 export class RestaurantServiceService {
-  private baseUrl = 'https://juicynyummy.netlify.app/.netlify/functions/api/restaurant'; 
+  private baseUrl = 'http://localhost:5000/restaurant'; 
   constructor(private http: HttpClient) {}
 
   getAll(page: any) {

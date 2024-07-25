@@ -8,7 +8,7 @@ import { review } from '../model/review';
   providedIn: 'root',
 })
 export class AdminServiceService {
-  private baseUrl = 'https://juicynyummy.netlify.app/.netlify/functions/api/admin';
+  private baseUrl = 'http://localhost:5000/admin';
 
   constructor(private http: HttpClient) {}
 

@@ -9,7 +9,7 @@ import { adminProfile } from '../model/adminProfile';
   providedIn: 'root',
 })
 export class AdminAuthService {
-  private baseURL: string = 'https://juicynyummy.netlify.app/.netlify/functions/api/admin/auth';
+  private baseURL: string = 'http://localhost:5000/admin/auth';
 
   constructor(private http: HttpClient, private router: Router) {}
 

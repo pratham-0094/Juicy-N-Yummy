@@ -10,7 +10,7 @@ import { userSignup } from '../model/userSignup';
   providedIn: 'root',
 })
 export class UserAuthService {
-  private baseUrl = 'https://juicynyummy.netlify.app/.netlify/functions/api/auth';
+  private baseUrl = 'http://localhost:5000/auth';
 
   constructor(private http: HttpClient, private router: Router) {}
 

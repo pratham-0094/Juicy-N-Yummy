@@ -7,7 +7,7 @@ import { review } from '../model/review';
   providedIn: 'root',
 })
 export class ItemServiceService {
-  private baseUrl = 'https://juicynyummy.netlify.app/.netlify/functions/api/restaurant'; 
+  private baseUrl = 'http://localhost:5000/restaurant'; 
 
   constructor(private http: HttpClient) {}
 
